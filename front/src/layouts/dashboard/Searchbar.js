@@ -78,6 +78,7 @@ export default function Searchbar() {
               }
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
             />
+            {/* onClick시 검색하게 변경 */}
             <Button variant="contained" onClick={handleClose}>
               Search
             </Button>

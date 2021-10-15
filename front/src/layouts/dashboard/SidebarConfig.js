@@ -18,7 +18,7 @@ const sidebarConfig = [
     icon: getIcon(pieChart2Fill)
   },
   {
-    title: 'user',
+    title: 'myPage',
     path: '/dashboard/user',
     icon: getIcon(peopleFill)
   },

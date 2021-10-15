@@ -1,37 +1,94 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 // material
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 // components
 import Page from '../components/Page';
-import {
-  RoomReservationList
-} from '../components/_dashboard/user';
+import { RoomReservationList, FlightReservationList } from '../components/_dashboard/user';
 import RoomReserveStore from '../store/RoomReserveStore';
-
+import FlightReserveStore from '../store/FlightReserveStore';
+import SelectOptions from '../store/SelectOptions';
+import {  Button,} from '@mui/material';
+import { Menu, Select, } from 'semantic-ui-react'
 // ----------------------------------------------------------------------
 
-export default function RoomReservation() {
-  const roomReserveStore = RoomReserveStore;
-  // const [roomReserveStore, setroomReserveStore]
-  // roomReserveStore.selectAll();
-  // console.log("@@");
+export default function MyPage() {
+  const [menu, setMenu] = useState(0);
+  const [oiselect, oisetSelect] = useState(99);
+  const [cselect, csetSelect] = useState(99);
 
-  // ,[] 하면 class에서 componentDidMount()랑 같음
-  useEffect(()=>{
-    // roomReserveStore.selectAll();
-  }, [roomReserveStore.rooms]);
+  const rs = RoomReserveStore;
+  const fs = FlightReserveStore;
+  const oiOptions = SelectOptions.oiOptions;
+  const cOptions00 = SelectOptions.cOptions00;
+  const cOptions01 = SelectOptions.cOptions01;
+  const cOptions99 = SelectOptions.cOptions99;
 
+  const oisetCode = (e, {value}) => {
+    // e.persist();
+    // console.log(value);
+    oisetSelect(value);
+  };
+
+  const csetCode = (e, {value}) => {
+    // e.persist();
+    console.log(value); 
+    csetSelect(value);
+  };
+
+  const setList = () => {
+    if (menu === 0){
+      // user info get
+    }
+    else if(menu === 1){
+      // flight list filtering
+      fs.selectFlightReservation(oiselect, cselect);
+    }
+    else if(menu === 2){
+      // room list filtering
+      rs.selectRoomReservation(oiselect, cselect);
+    }
+    else if(menu === 3){
+      // schedule list filtering
+    }
+  };
 
   return (
     // title:tab에 적힐 메세지
     <Page title="Dashboard: Products | Minimal-UI"> 
       <Container>
-        {/* 분류/페이지 타이틀 */}
-        <Typography variant="h4" sx={{ mb: 5 }}>
-          Room
-        </Typography>
+        <Stack>         
+        <Menu compact>
+        <Menu.Item onClick={()=>setMenu(0)}
+          name='info'
+        >Info
+        </Menu.Item>
+        <Menu.Item onClick={()=>setMenu(1)}
+          name='Flight'
+        >Flight
+        </Menu.Item>
+        <Menu.Item onClick={()=>setMenu(2)}
+          name='Room'
+        >Room
+        </Menu.Item>
+        <Menu.Item onClick={()=>setMenu(3)}
+          name='Schedule'
+        >Schedule
+        </Menu.Item>
+        <Select placeholder='----------' options={oiOptions} onChange={oisetCode}/>
+        {oiselect === "00" &&
+          <Select placeholder='----------' options={cOptions00} onChange={csetCode}/> 
+        }
+        {oiselect === "01" &&
+          <Select placeholder='----------' options={cOptions01} onChange={csetCode}/>
+        }
+        {oiselect === "99" &&
+          <Select placeholder='----------' options={cOptions99} />
+        }
+        
+        <Button onClick={setList}>Search</Button>
+        </Menu>
+        </Stack>
 
-      {/* filters & sort by 부분 아래만*/}
         <Stack
           direction="row"
           flexWrap="wrap-reverse"
@@ -39,26 +96,16 @@ export default function RoomReservation() {
           justifyContent="flex-end"
           sx={{ mb: 3 }}
         >
-          {/* 위아래둘다 */}
-          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1}}>
-            {/* filters  클릭하면*/}
-          {/* <ProductFilterSidebar
-              formik={formik}
-              isOpenFilter={openFilter}
-              onResetFilter={handleResetFilter}
-              onOpenFilter={handleOpenFilter}
-              onCloseFilter={handleCloseFilter}
-            /> */}
-            {/* sort by 클릭하면 */}
-            {/* <ProductSort /> */}
-          </Stack>
         </Stack>
 
-        {/* mobx써서 파라미터안넘겨도됨  */}
-        {/* <ProductList products={PRODUCTS} /> */}
-        <RoomReservationList/>
-        {/* 오른쪽 장바구니 */}
-        {/* <ProductCartWidget /> */}
+        {menu === 1 &&
+          <FlightReservationList />
+        }
+        {menu === 2 &&
+          <RoomReservationList />
+        }
+
+       
       </Container>
     </Page>
   );

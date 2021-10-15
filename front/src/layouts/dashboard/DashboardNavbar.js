@@ -11,12 +11,12 @@ import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-
 // ----------------------------------------------------------------------
-
+//  오른쪽 위
 const DRAWER_WIDTH = 280;
 const APPBAR_MOBILE = 64;
 const APPBAR_DESKTOP = 92;
+const menu="Info";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
@@ -43,9 +43,11 @@ DashboardNavbar.propTypes = {
 };
 
 export default function DashboardNavbar({ onOpenSidebar }) {
+
   return (
     <RootStyle>
       <ToolbarStyle>
+        {/* 창크기 줄어들었을때 메뉴 토글로 */}
         <MHidden width="lgUp">
           <IconButton onClick={onOpenSidebar} sx={{ mr: 1, color: 'text.primary' }}>
             <Icon icon={menu2Fill} />
@@ -56,11 +58,11 @@ export default function DashboardNavbar({ onOpenSidebar }) {
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
-          <LanguagePopover />
+        <LanguagePopover />
           <NotificationsPopover />
           <AccountPopover />
         </Stack>
-      </ToolbarStyle>
-    </RootStyle>
+    </ToolbarStyle>
+  </RootStyle>
   );
 }

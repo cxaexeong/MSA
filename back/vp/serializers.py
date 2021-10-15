@@ -9,13 +9,9 @@ class UserTempSerializer(serializers.HyperlinkedModelSerializer):
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Room
-        fields = ['id','name','location','imgUrl','ocode','icode']
+        fields = ['id','oi_code','c_code','name','location','rating','reviews','price','start_date','end_date','imgUrl']
 
-# HyperlinkedModelSerializer로 하면 에러나는데 이유를 모르겠음 외래키때문인가
-class RoomReservationSerializer(serializers.ModelSerializer):
-    # drf에서 join
-    room_id = RoomSerializer(read_only=True)
-
+class FlightSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = RoomReservation
-        fields = ['id','room_id','user_id','start_date','end_date']
+        model = Flight
+        fields = ['id','oi_code','c_code','depart_airline','depart_dep_airport','depart_dest_airport','depart_etd','depart_eta','depart_et','depart_via','return_airline','return_dep_airport','return_dest_airport','return_etd','return_eta','return_et','return_via','price','imgUrl1','imgUrl2']

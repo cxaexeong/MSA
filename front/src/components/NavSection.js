@@ -32,6 +32,7 @@ const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props
       backgroundColor: theme.palette.primary.main
     }
   })
+  
 );
 
 const ListItemIconStyle = styled(ListItemIcon)({
@@ -54,6 +55,7 @@ function NavItem({ item, active }) {
   const isActiveRoot = active(item.path);
   const { title, path, icon, info, children } = item;
   const [open, setOpen] = useState(isActiveRoot);
+  
 
   const handleOpen = () => {
     setOpen((prev) => !prev);
@@ -156,6 +158,8 @@ NavSection.propTypes = {
 export default function NavSection({ navConfig, ...other }) {
   const { pathname } = useLocation();
   const match = (path) => (path ? !!matchPath({ path, end: false }, pathname) : false);
+  console.log(navConfig);
+
 
   return (
     <Box {...other}>

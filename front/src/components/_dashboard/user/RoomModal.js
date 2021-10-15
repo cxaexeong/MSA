@@ -20,12 +20,14 @@ function RoomModal() {
         <Modal.Description>
           <Header>{rs.name}</Header>
           <p>
-            시작일 : {rs.room.start_date}
+            시작일 : {rs.start_date}
             &nbsp;&nbsp;&nbsp;
-            종료일 : {rs.room.end_date}
+            종료일 : {rs.end_date}
           </p>
           <p>주소 : {rs.location}</p>
-          <p>추가 정보 : 자세한주소, 가격, 룸넘버</p>
+          <p>점수 : {rs.rating}</p>
+          <p>리뷰개수 : {rs.reviews}</p>
+          <p>가격 : {rs.price}</p>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>

@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vp.apps.VpConfig',
+    'mypage.apps.MypageConfig',
     'rest_framework',
-    # 'storages'
 ]
 
 MIDDLEWARE = [
@@ -80,18 +80,18 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        # "ENGINE": "django.db.backends.mysql",
-        # "NAME": "vpdb",
-        # "USER": "vpuser",
-        # "PASSWORD": "1234",
-        # "HOST": "3.15.69.19",
-        # "PORT": "3306",
         "ENGINE": "django.db.backends.mysql",
         "NAME": "vpdb",
-        "USER": "root",
-        "PASSWORD": "12345",
-        "HOST": "localhost",
+        "USER": "vpuser",
+        "PASSWORD": "1234",
+        "HOST": "3.15.69.19",
         "PORT": "3306",
+        # "ENGINE": "django.db.backends.mysql",
+        # "NAME": "vpdb",
+        # "USER": "root",
+        # "PASSWORD": "12345",
+        # "HOST": "localhost",
+        # "PORT": "3306",
     }
 }
 
@@ -133,20 +133,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATICFILES_STORAGE = 'mysite.storage.S3StaticStorage'
-#
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# DEFAULT_FILE_STORAGE = 'mysite.storage.S3MediaStorage'
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# AWS_ACCESS_KEY_ID = 'YOUR-ACCESS-KEY-ID'
-# AWS_SECRET_ACCESS_KEY = 'YOUR-SECRET-ACCESS-KEY'
-# AWS_S3_REGION_NAME = 'ap-northeast-2'
-# AWS_STORAGE_BUCKET_NAME = 'YOUR-STORAGE-NAME'
-# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
-# AWS_DEFAULT_ACL = 'public-read'

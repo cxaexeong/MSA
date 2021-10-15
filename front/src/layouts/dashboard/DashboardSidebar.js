@@ -33,6 +33,7 @@ const AccountStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
+//  왼쪽 사이드바
 
 DashboardSidebar.propTypes = {
   isOpenSidebar: PropTypes.bool,
@@ -56,12 +57,14 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         '& .simplebar-content': { height: '100%', display: 'flex', flexDirection: 'column' }
       }}
     >
+      {/* 홈으로 돌아가는 로고 버튼 */}
       <Box sx={{ px: 2.5, py: 3 }}>
         <Box component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
           <Logo />
         </Box>
       </Box>
 
+      {/* jaydon 사람 카드 */}
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none" component={RouterLink} to="#">
           <AccountStyle>
@@ -82,6 +85,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
       <Box sx={{ flexGrow: 1 }} />
 
+      {/* 
       <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
         <Stack
           alignItems="center"
@@ -94,12 +98,15 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             bgcolor: 'grey.200'
           }}
         >
+
+          사람 그림 
           <Box
             component="img"
             src="/static/illustrations/illustration_avatar.png"
             sx={{ width: 100, position: 'absolute', top: -50 }}
           />
-
+          
+           사람 그림 아래 글씨 
           <Box sx={{ textAlign: 'center' }}>
             <Typography gutterBottom variant="h6">
               Get more?
@@ -109,6 +116,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             </Typography>
           </Box>
 
+           Upgrade to Pro 버튼 
           <Button
             fullWidth
             href="https://material-ui.com/store/items/minimal-dashboard/"
@@ -118,7 +126,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             Upgrade to Pro
           </Button>
         </Stack>
-      </Box>
+      </Box> 
+      */}
     </Scrollbar>
   );
 
