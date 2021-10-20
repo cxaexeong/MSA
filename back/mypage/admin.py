@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(RoomReservation)
 admin.site.register(FlightReservation)
+admin.site.register(Todo)

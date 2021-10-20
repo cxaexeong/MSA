@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
 // material
-import { Container, Stack } from '@mui/material';
+import { Container, Stack, Button} from '@mui/material';
+import { Menu, Select, } from 'semantic-ui-react'
 // components
 import Page from '../components/Page';
-import { RoomReservationList, FlightReservationList } from '../components/_dashboard/user';
+import { RoomReservationList, FlightReservationList,  TodoList } from '../components/_dashboard/user';
 import RoomReserveStore from '../store/RoomReserveStore';
 import FlightReserveStore from '../store/FlightReserveStore';
+import { useState } from 'react';
 import SelectOptions from '../store/SelectOptions';
-import {  Button,} from '@mui/material';
-import { Menu, Select, } from 'semantic-ui-react'
+
 // ----------------------------------------------------------------------
 
 export default function MyPage() {
@@ -31,7 +31,6 @@ export default function MyPage() {
 
   const csetCode = (e, {value}) => {
     // e.persist();
-    console.log(value); 
     csetSelect(value);
   };
 
@@ -56,6 +55,7 @@ export default function MyPage() {
     // title:tab에 적힐 메세지
     <Page title="Dashboard: Products | Minimal-UI"> 
       <Container>
+      
         <Stack>         
         <Menu compact>
         <Menu.Item onClick={()=>setMenu(0)}
@@ -74,21 +74,21 @@ export default function MyPage() {
           name='Schedule'
         >Schedule
         </Menu.Item>
-        <Select placeholder='----------' options={oiOptions} onChange={oisetCode}/>
-        {oiselect === "00" &&
-          <Select placeholder='----------' options={cOptions00} onChange={csetCode}/> 
-        }
-        {oiselect === "01" &&
-          <Select placeholder='----------' options={cOptions01} onChange={csetCode}/>
-        }
-        {oiselect === "99" &&
-          <Select placeholder='----------' options={cOptions99} />
-        }
+          <Select placeholder='----------' options={oiOptions} onChange={oisetCode}/> 
+          {oiselect === "00" &&
+            <Select placeholder='----------' options={cOptions00} onChange={csetCode}/> 
+          }
+          {oiselect === "01" &&
+            <Select placeholder='----------' options={cOptions01} onChange={csetCode}/>
+          }
+          {oiselect === "99" &&
+            <Select placeholder='----------' options={cOptions99} onChange={csetCode}/>
+          }
         
         <Button onClick={setList}>Search</Button>
         </Menu>
         </Stack>
-
+    
         <Stack
           direction="row"
           flexWrap="wrap-reverse"
@@ -104,7 +104,9 @@ export default function MyPage() {
         {menu === 2 &&
           <RoomReservationList />
         }
-
+        {menu === 3 &&
+          <TodoList />
+        }
        
       </Container>
     </Page>

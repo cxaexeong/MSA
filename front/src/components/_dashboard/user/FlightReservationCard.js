@@ -1,8 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom';
-import {  Box, Card, Link, Typography, Stack } from '@mui/material';
+import {  Grid, Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FlightReserveStore from '../../../store/FlightReserveStore';
 import { observer } from 'mobx-react';
+import { Item } from 'semantic-ui-react';
 
 const ProductImgStyle = styled('img')({
   top: 0,
@@ -14,37 +15,102 @@ const ProductImgStyle = styled('img')({
 
 function FlightReservationCard({flight}) {
   // db랑  같아야함
-  console.log(flight);
   const { flight_id } = flight;
   const fs = FlightReserveStore;
 //  onClick={()=>RoomModal(room)}
   return (
     
     <Card onClick={()=>{fs.setFlight(flight); fs.setModalOpen(true)}}>
-    
-      <Box sx={{ pt: '100%', position: 'relative' }}>
-      <ProductImgStyle alt={flight_id.depart_dest_airport} src={flight_id.imgUrl1} />
+    <Grid container spacing={1}>
+    <Grid item xs={6} sm={3}>
+    <Stack   spacing={1} sx={{ p: 4 }}>
+      <Item>
+      <Box  sx={{ pt: '30%', position: 'relative' }}>
+              <ProductImgStyle alt={flight_id.depart_airline} src={flight_id.imgUrl1} />
       </Box>
+          </Item>
+      <Item>
+      <Box  sx={{ pt: '50%', position: 'relative' }}>
+              <ProductImgStyle alt={flight_id.return_airline} src={flight_id.imgUrl2} />
+      </Box>
+      </Item>
+    </Stack>
       
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink} >
-          <Typography variant="subtitle1" noWrap >
-            {flight_id.depart_dep_airport}
-            {flight_id.depart_dest_airport}
-          </Typography>
-        </Link>
+    </Grid>
+    <Grid item xs={6} sm={3}>
+    <Stack  spacing={2} sx={{ p: 3 }}>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+            {flight_id.depart_etd}
+        </Typography>
+      </Item>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+          {flight_id.depart_dep_airport}
+        </Typography>
+      </Item>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+            {flight_id.return_etd}
+        </Typography>
+      </Item>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+          {flight_id.return_dep_airport}
+        </Typography>
+      </Item>
+    </Stack>
+    </Grid>
+    <Grid item xs={6} sm={3}>
+    <Stack   spacing={2} sx={{ p: 3 }}>
+    <Item>
+      <Typography variant="subtitle1" noWrap >
+          {flight_id.depart_et}
+      </Typography>
+    </Item>
+    <Item>
+      <Typography variant="subtitle1" noWrap >
+        {flight_id.depart_via}
+      </Typography>
+    </Item>
+    <Item>
+      <Typography variant="subtitle1" noWrap >
+          {flight_id.return_et}
+      </Typography>
+    </Item>
+    <Item>
+      <Typography variant="subtitle1" noWrap >
+        {flight_id.return_via}
+      </Typography>
+    </Item>
+  </Stack>
+  </Grid>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Typography variant="subtitle2">
-            &nbsp;
-            {flight_id.depart_et}
-            {flight_id.return_et}
-            <br/>
-            {flight_id.price}
-          </Typography>
+    <Grid item xs={6} sm={3}>
+      <Stack  spacing={2} sx={{ p: 3 }}>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+            {flight_id.depart_eta}
+        </Typography>
+      </Item>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+          {flight_id.depart_dest_airport}
+        </Typography>
+      </Item>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+            {flight_id.return_eta}
+        </Typography>
+      </Item>
+      <Item>
+        <Typography variant="subtitle1" noWrap >
+          {flight_id.return_dest_airport}
+        </Typography>
+      </Item>
         </Stack>
-
-      </Stack>
+    </Grid>
+    </Grid>
     </Card>
     
   );

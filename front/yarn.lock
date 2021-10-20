@@ -1949,6 +1949,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@south-paw/react-vector-maps@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@south-paw/react-vector-maps/-/react-vector-maps-3.1.0.tgz#f4b371d14b46de8fa12a0f594e565cd7aa5278f3"
+  integrity sha512-wjoSzfoMPynA+8owHD4lABYxxdqVhFwZ5k4CchlkSpmkqsQNtG8Mfj7C2+niG6p4Ouzu6rC3hQ2BRJRZDXolHw==
+
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-1.4.2.tgz#e6786b6af5799f82f7ab3a82e53f6182d2b91a58"
@@ -8216,6 +8221,11 @@ mobx@^6.3.3:
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.3.3.tgz#a3006c56243b1c7ea4ee671a66f963b9f43cf1af"
   integrity sha512-JoNU50rO6d1wHwKPJqKq4rmUMbYnI9CsJmBo+Cu4exBYenFvIN77LWrZENpzW6reZPADtXMmB1DicbDSfy8Clw==
 
+moment@^2.29.1:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -11403,7 +11413,7 @@ style-value-types@4.1.4:
     hey-listen "^1.0.8"
     tslib "^2.1.0"
 
-styled-components@^5.3.1:
+styled-components@^5, styled-components@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-5.3.1.tgz#8a86dcd31bff7049c2ed408bae36fa23f03f071a"
   integrity sha512-JThv2JRzyH0NOIURrk9iskdxMSAAtCfj/b2Sf1WJaCUsloQkblepy1jaCLX/bYE+mhYo3unmwVSI9I5d9ncSiQ==

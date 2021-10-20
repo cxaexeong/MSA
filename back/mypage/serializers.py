@@ -19,3 +19,9 @@ class FlightReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlightReservation
         fields = ['id','flight_id','user_id','oi_code','c_code']
+
+class TodoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Todo
+        fields = ['id','user_id','title','contents', 'start_date', 'end_date']

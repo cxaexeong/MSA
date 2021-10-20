@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
 // material
-import { Grid } from '@mui/material';
+import { Grid, List, ListItem } from '@mui/material';
 import FlightReservationCard from './FlightReservationCard';
 import FlightReserveStore from '../../../store/FlightReserveStore';
 import FlightModal from './FlightModal';
 import { observer } from 'mobx-react';
+import styled, {css} from 'styled-components'
+import 'semantic-ui-css/semantic.min.css';
+
+const ModalLocation = styled.div`
+  margin: 100px;
+  ${props=>{
+  	return props.check ? 'background-color: black !important;' : 'background-color:white'
+  }}`;
 // ----------------------------------------------------------------------
 
 // ProductList.propTypes = {
@@ -17,13 +25,13 @@ function FlightReservationList() {
 
   return (
     <div>
-    <Grid container spacing={3} >
+     <Grid container spacing={3} >
       {flightReserveStore.flights.map((flight) => (
-        <Grid key={flight.id} item xs={12} sm={6} md={3}>
+        <Grid key={flight.id} item xs={12}>
           <FlightReservationCard flight={flight}  />
         </Grid>
       ))}
-    </Grid>
+    </Grid> 
     <FlightModal/>
     </div>
   );
