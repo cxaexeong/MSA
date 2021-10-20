@@ -38,7 +38,7 @@ class RoomReserveStore{
       this.rooms = this.rooms.filter(room => room.id !== this.room.id);
     } catch(error) {
       console.log(error);
-    }
+    } 
   }
 
   // 로그인 구현끝나면 파라미터로 id 받아와야함

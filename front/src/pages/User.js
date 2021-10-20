@@ -40,6 +40,7 @@ export default function MyPage() {
     }
     else if(menu === 1){
       // flight list filtering
+      console.log("#####2");
       fs.selectFlightReservation(oiselect, cselect);
     }
     else if(menu === 2){

@@ -100,6 +100,11 @@ function TodoModal() {
             onClick={() => ts.todoUpdate()}
             positive
             />
+            <Button
+          content="확인"
+          color='black'
+          onClick={() => ts.setModalOpen(false)}
+        />
     </Form>
         </Box>
       </StyledModal>

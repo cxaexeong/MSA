@@ -16,17 +16,34 @@ import {
   FormControlLabel
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
+import axios from 'axios';
+import LoginStore from '../../../store/LoginStore';
 // ----------------------------------------------------------------------
 
-export default function LoginForm() {
+export default function LoginForm(props) {
+  const ls = LoginStore;
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     password: Yup.string().required('Password is required')
   });
+//   axios.post('http://localhost:8000/login/',{
+//     username,
+//     password,
+// }).then(function (res){
+//     console.log(res)
+//     console.log(res.data.token)
+//     console.log(res.config.data)
+//     localStorage.setItem('token', res.data.token);
+//     localStorage.setItem('user', res.config.data);
+//     loginInfo.setUser(res.config.data);
+//     loginInfo.setToken(res.data.token);
+// }).catch(function (err){
+//     console.log(err)
+//     alert("아이디, 비밀번호를 확인하세요.")
+// })
+// }
 
   const formik = useFormik({
     initialValues: {
@@ -36,11 +53,33 @@ export default function LoginForm() {
     },
     validationSchema: LoginSchema,
     onSubmit: () => {
-      navigate('/dashboard', { replace: true });
-    }
+      // postLoginInfo(values)
+      navigate('/dashboard', { replace: true });    }
   });
 
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } = formik;
+  const handleSubmit = (event) => {
+    console.log(values.email)
+    console.log(values.password)
+    axios.post('http://localhost:8000/login/',{
+        username: values.email,
+        password: values.password,
+    }).then(function (res){
+      console.log("#####")
+        console.log(res.data.token)
+        console.log(values.email)
+        localStorage.setItem('token', res.data.access);
+        localStorage.setItem('user', values.email);
+        ls.setToken(res.data.token);
+        ls.setUser(values.email);
+        ls.userHasAuthenticated(true);
+        navigate('/dashboard', { replace: true }); 
+        }).catch(function (err){
+        console.log(err)
+    })
+    event.preventDefault();
+}
+
+  const { errors, touched, values, isSubmitting, getFieldProps } = formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
@@ -97,6 +136,7 @@ export default function LoginForm() {
           type="submit"
           variant="contained"
           loading={isSubmitting}
+          onClick={handleSubmit}
         >
           Login
         </LoadingButton>

@@ -4,6 +4,8 @@ class MypageApi{
     URL = '/mypage/';
     
     roomReserveList(uid,oi,c) {
+        console.log("@@@@@@@");
+
         return axios.get(this.URL+`room/`+`${uid}/`+`${oi}/`+`${c}/`)
             .then((response) => response.data);
     }
@@ -48,5 +50,6 @@ class MypageApi{
             .then((response) => response.data);
     }
 
+    
 }
 export default new MypageApi();

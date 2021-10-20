@@ -4,17 +4,17 @@ import mypageApi from "../api/MypageApi";
 import moment from 'moment';
 
 class TodoStore{
-    todos = {};
-    todo = [];
-    uid = '1'; // user 완성되면 그 값 가져와야함 
-    modalOpen = false;
-    title="";
-    contents="";
-    start_date="";
-    end_date="";
-    selectedStartDate = "";
-    selectedEndDate = "";
-    d = new Date();
+  todos = {};
+  todo = [];
+  uid = '1'; // user 완성되면 그 값 가져와야함 
+  modalOpen = false;
+  title="";
+  contents="";
+  start_date="";
+  end_date="";
+  selectedStartDate = "";
+  selectedEndDate = "";
+  d = new Date();
 
   constructor() {
       makeAutoObservable(this, {}, { autoBind: true });

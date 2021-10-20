@@ -7,6 +7,8 @@ import {  Select } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { useState} from 'react';
 import { Link } from 'react-router-dom';
+import { Popover, Typography } from '@mui/material';
+
 
 const MapSizeWorld = styled.div`
 width: 90%;
@@ -60,16 +62,38 @@ const selectOptions = [
     { key: 1, value: 1, text: '국내' }
     ];
 
-const layerProps = {
-    // 온클릭액션 여기서 정의
-    onClick: ({ target }) => console.log(target.attributes.id.value),
-    // layerProps={layerProps}
-  };
+// const layerProps = {
+//     // 온클릭액션 여기서 정의
+//     // onClick: ({ target }) => console.log(target.attributes.id.value),
+//     // onClick={({ target })=><Link to="/dashboard/products"/>}
+//     // layerProps={layerProps}
+//   };
+
 
 
 function MainVectorMap() {
   const [map, setMap] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [msg, setMsg] = useState("");
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
+  const layerProps = {
+    // 온클릭액션 여기서 정의
+    onClick: ({ target }) => setMsg(target.attributes.id.value),
+    // onClick={({ target })=><Link to="/dashboard/products"/>}
+    // layerProps={layerProps}
+  };
+
+  const setAE = (event) => {
+    setAnchorEl(event.currentTarget)
+  } 
+  
+  const setMessage = ({ target }) => {
+    setMsg(target.attributes.id.value)
+  } 
+
+  
     return (
         <>
         <Select value={map} options={selectOptions} onChange={({value},e )=>{setMap(e.value);}}/>
@@ -77,17 +101,28 @@ function MainVectorMap() {
         {map === 0 ?
         <MapSizeWorld>
             <Map>
-                <VectorMap {...worldLowRes}  onClick={({ target })=><Link to="/dashboard/products"/>}/>
+                <VectorMap {...worldLowRes}  layerProps={layerProps} onClick={setAE}/>
             </Map>
         </MapSizeWorld>
         :
-        
         <MapSizeKorea>
             <Map>
                 <VectorMap {...koMap} layerProps={layerProps}/>
             </Map>
             </MapSizeKorea>
         }
+        <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={()=>setAnchorEl(null)}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+      >
+        <Typography sx={{ p: 2 }}>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/></Typography>
+      </Popover>
         </>
     );
 }

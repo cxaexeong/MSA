@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
+import axios from 'axios';
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
@@ -25,6 +25,24 @@ export default function RegisterForm() {
     password: Yup.string().required('Password is required')
   });
 
+  const postRegisterInfo = (values) => {
+    let username = values.email
+    let password = values.password
+    let first_name = values.firstName
+    let last_name = values.lastName
+    axios.post('http://localhost:8000/account/api/register',{
+            username,
+            password,
+            first_name,
+            last_name,
+        }).then(function (res){
+            console.log(res)
+        }).catch(function (err){
+            console.log(err)
+            alert("사용불가능한 아이디입니다.")
+        })
+      }
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -33,8 +51,9 @@ export default function RegisterForm() {
       password: ''
     },
     validationSchema: RegisterSchema,
-    onSubmit: () => {
-      navigate('/dashboard', { replace: true });
+    onSubmit: (values) => {
+      postRegisterInfo(values)
+      navigate('/dashboard/app/', { replace: true });
     }
   });
 

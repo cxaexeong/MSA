@@ -8,8 +8,6 @@ import { Grid } from '@mui/material';
 
 function TodoList() {
     const todoStore = TodoStore;
-  console.log("####", todoStore.todos);
-
   return (
     <>
         <NewTodo />
