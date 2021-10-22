@@ -4,14 +4,12 @@ class MypageApi{
     URL = '/mypage/';
     
     roomReserveList(uid,oi,c) {
-        console.log("@@@@@@@");
-
-        return axios.get(this.URL+`room/`+`${uid}/`+`${oi}/`+`${c}/`)
+        return axios.get(this.URL+`room/`+`${uid}/`+`${oi}/`+`${c}/` )
             .then((response) => response.data);
     }
 
-    roomReserveDelete(id) {
-        return axios.delete(this.URL+`roomdelete/`+`${id}/`)
+    roomReserveDelete(uid,rid) {
+        return axios.delete(this.URL+`room/delete/`+`${uid}/`+`${rid}/`)
             .then((response) => response.data);
     }
 
@@ -49,7 +47,5 @@ class MypageApi{
         return axios.delete(this.URL+`delete/${id}/`)
             .then((response) => response.data);
     }
-
-    
 }
 export default new MypageApi();

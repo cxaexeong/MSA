@@ -27,7 +27,7 @@ class TodoStore{
     try {
       const results = await mypageApi.todoList(this.uid);
       runInAction(() => this.todos = results);
-      console.log(this.todos);
+      // console.log(this.todos);
     } catch(error) {
       console.log(error);
     }

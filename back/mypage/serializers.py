@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from mypage.models import *
+from vp.models import *
 from vp.serializers import RoomSerializer, FlightSerializer
 
 # HyperlinkedModelSerializer로 하면 에러나는데 이유를 모르겠음 외래키때문인가
 class RoomReservationSerializer(serializers.ModelSerializer):
     # drf에서 join
-    room_id = RoomSerializer(read_only=True)
 
     class Meta:
         model = RoomReservation
@@ -13,8 +13,6 @@ class RoomReservationSerializer(serializers.ModelSerializer):
 
 
 class FlightReservationSerializer(serializers.ModelSerializer):
-    # drf에서 join
-    flight_id = FlightSerializer(read_only=True)
 
     class Meta:
         model = FlightReservation

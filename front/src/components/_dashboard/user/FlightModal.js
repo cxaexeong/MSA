@@ -51,7 +51,7 @@ function FlightModal() {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button color='black' onClick={() => {fs.setModalOpen(false); fs.deleteFlightReservation()}}>
+        <Button color='black' onClick={() => {fs.setModalOpen(false); fs.reserveAirport(fs.flight.id)}}>
           예약취소
         </Button>
         <Button

@@ -8,7 +8,8 @@ import styled from 'styled-components'
 import { useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Popover, Typography } from '@mui/material';
-
+import statusMap from '../../../store/statusMap';
+import ProductStore from '../../../store/ProductStore';
 
 const MapSizeWorld = styled.div`
 width: 90%;
@@ -62,14 +63,6 @@ const selectOptions = [
     { key: 1, value: 1, text: '국내' }
     ];
 
-// const layerProps = {
-//     // 온클릭액션 여기서 정의
-//     // onClick: ({ target }) => console.log(target.attributes.id.value),
-//     // onClick={({ target })=><Link to="/dashboard/products"/>}
-//     // layerProps={layerProps}
-//   };
-
-
 
 function MainVectorMap() {
   const [map, setMap] = useState(0);
@@ -77,20 +70,23 @@ function MainVectorMap() {
   const [msg, setMsg] = useState("");
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+  const ps = ProductStore;
 
   const layerProps = {
-    // 온클릭액션 여기서 정의
-    onClick: ({ target }) => setMsg(target.attributes.id.value),
-    // onClick={({ target })=><Link to="/dashboard/products"/>}
-    // layerProps={layerProps}
+    onClick: ({ target }) => {setMessage(target.attributes.id.value)},
   };
 
   const setAE = (event) => {
     setAnchorEl(event.currentTarget)
   } 
   
-  const setMessage = ({ target }) => {
-    setMsg(target.attributes.id.value)
+  const setMessage = (t) => {
+    console.log("######");
+    // console.log(statusMap[t]);
+    ps.setList(statusMap[t])
+    setMsg(ps.name,
+      ps.stage,
+      ps.comment);
   } 
 
   
@@ -107,7 +103,7 @@ function MainVectorMap() {
         :
         <MapSizeKorea>
             <Map>
-                <VectorMap {...koMap} layerProps={layerProps}/>
+                <VectorMap {...koMap} layerProps={layerProps} onClick={setAE}/>
             </Map>
             </MapSizeKorea>
         }
@@ -121,7 +117,9 @@ function MainVectorMap() {
           horizontal: 'center',
         }}
       >
-        <Typography sx={{ p: 2 }}>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/>{msg}<br/></Typography>
+        <Typography sx={{ p: 2 }}>
+          {ps.stage}
+        </Typography>
       </Popover>
         </>
     );

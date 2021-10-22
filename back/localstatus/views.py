@@ -1,0 +1,24 @@
+from django.http import HttpResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from localstatus.serializers import *
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+
+
+@api_view(['GET'])
+def localstatus_list(request):
+    status_list = ProductDetail.objects.all()
+
+    serializer = LocalDetailSerializer(status_list, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def localstatus_detail(request, pk):
+    status_list = ProductDetail.objects.get(id=pk)
+
+    serializer = LocalDetailSerializer(status_list, many=False)
+    return Response(serializer.data)
+

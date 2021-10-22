@@ -20,6 +20,9 @@ const ModalLocation = styled.div`
 // };
 
 function FlightReservationList() {
+  // useEffect로 componentdidmount 안에서 
+  // store에 하면 다른메뉴에서도 불러서 error
+  // 
   const flightReserveStore = FlightReserveStore;
   // console.log(roomReserveStore.rooms);
 

@@ -12,6 +12,8 @@ import { MHidden } from '../../components/@material-extend';
 //
 import sidebarConfig from './SidebarConfig';
 import account from '../../_mocks_/account';
+import sidebarConfig_2 from './SidebarConfig_2'
+import LoginStore from '../../store/LoginStore';
 
 // ----------------------------------------------------------------------
 
@@ -40,8 +42,10 @@ DashboardSidebar.propTypes = {
   onCloseSidebar: PropTypes.func
 };
 
-export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
+export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }, props) {
   const { pathname } = useLocation();
+
+  const ls = LoginStore
 
   useEffect(() => {
     if (isOpenSidebar) {
@@ -81,8 +85,12 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Link>
       </Box>
 
+      {ls.authenticated === true
+      ?
+      <NavSection navConfig={sidebarConfig_2} />
+      :
       <NavSection navConfig={sidebarConfig} />
-
+      }
       <Box sx={{ flexGrow: 1 }} />
 
       {/* 

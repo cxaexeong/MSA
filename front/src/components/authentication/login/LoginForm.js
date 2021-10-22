@@ -58,21 +58,19 @@ export default function LoginForm(props) {
   });
 
   const handleSubmit = (event) => {
-    console.log(values.email)
-    console.log(values.password)
     axios.post('http://localhost:8000/login/',{
         username: values.email,
         password: values.password,
     }).then(function (res){
-      console.log("#####")
-        console.log(res.data.token)
-        console.log(values.email)
-        localStorage.setItem('token', res.data.access);
+        localStorage.setItem('token', res.data.token);
+       console.log(res)
+
         localStorage.setItem('user', values.email);
-        ls.setToken(res.data.token);
-        ls.setUser(values.email);
+        localStorage.setItem('id', res.data.user.id);
+        ls.setToken(res.data.access);
+        ls.setUser(res.data.user.id, res.data.user.username, res.data.user.first_name,res.data.user.last_name);
         ls.userHasAuthenticated(true);
-        navigate('/dashboard', { replace: true }); 
+        navigate('/dashboard/app/', { replace: true }); 
         }).catch(function (err){
         console.log(err)
     })

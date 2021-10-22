@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import { Item } from 'semantic-ui-react';
 
 const ProductImgStyle = styled('img')({
-  top: 0,
+  top: 0, 
   width: '100%',
   height: '100%',
   objectFit: 'cover',
@@ -15,7 +15,7 @@ const ProductImgStyle = styled('img')({
 
 function FlightReservationCard({flight}) {
   // db랑  같아야함
-  const { flight_id } = flight;
+  // const { flight_id } = flight;
   const fs = FlightReserveStore;
 //  onClick={()=>RoomModal(room)}
   return (
@@ -26,12 +26,12 @@ function FlightReservationCard({flight}) {
     <Stack   spacing={1} sx={{ p: 4 }}>
       <Item>
       <Box  sx={{ pt: '30%', position: 'relative' }}>
-              <ProductImgStyle alt={flight_id.depart_airline} src={flight_id.imgUrl1} />
+              <ProductImgStyle alt={flight.depart_airline} src={flight.imgUrl1} />
       </Box>
           </Item>
       <Item>
       <Box  sx={{ pt: '50%', position: 'relative' }}>
-              <ProductImgStyle alt={flight_id.return_airline} src={flight_id.imgUrl2} />
+              <ProductImgStyle alt={flight.return_airline} src={flight.imgUrl2} />
       </Box>
       </Item>
     </Stack>
@@ -41,22 +41,22 @@ function FlightReservationCard({flight}) {
     <Stack  spacing={2} sx={{ p: 3 }}>
       <Item>
         <Typography variant="subtitle1" noWrap >
-            {flight_id.depart_etd}
+            {flight.depart_etd}
         </Typography>
       </Item>
       <Item>
         <Typography variant="subtitle1" noWrap >
-          {flight_id.depart_dep_airport}
+          {flight.depart_dep_airport}
         </Typography>
       </Item>
       <Item>
         <Typography variant="subtitle1" noWrap >
-            {flight_id.return_etd}
+            {flight.return_etd}
         </Typography>
       </Item>
       <Item>
         <Typography variant="subtitle1" noWrap >
-          {flight_id.return_dep_airport}
+          {flight.return_dep_airport}
         </Typography>
       </Item>
     </Stack>
@@ -65,22 +65,22 @@ function FlightReservationCard({flight}) {
     <Stack   spacing={2} sx={{ p: 3 }}>
     <Item>
       <Typography variant="subtitle1" noWrap >
-          {flight_id.depart_et}
+          {flight.depart_et}
       </Typography>
     </Item>
     <Item>
       <Typography variant="subtitle1" noWrap >
-        {flight_id.depart_via}
+        {flight.depart_via}
       </Typography>
     </Item>
     <Item>
       <Typography variant="subtitle1" noWrap >
-          {flight_id.return_et}
+          {flight.return_et}
       </Typography>
     </Item>
     <Item>
       <Typography variant="subtitle1" noWrap >
-        {flight_id.return_via}
+        {flight.return_via}
       </Typography>
     </Item>
   </Stack>
@@ -90,22 +90,22 @@ function FlightReservationCard({flight}) {
       <Stack  spacing={2} sx={{ p: 3 }}>
       <Item>
         <Typography variant="subtitle1" noWrap >
-            {flight_id.depart_eta}
+            {flight.depart_eta}
         </Typography>
       </Item>
       <Item>
         <Typography variant="subtitle1" noWrap >
-          {flight_id.depart_dest_airport}
+          {flight.depart_dest_airport}
         </Typography>
       </Item>
       <Item>
         <Typography variant="subtitle1" noWrap >
-            {flight_id.return_eta}
+            {flight.return_eta}
         </Typography>
       </Item>
       <Item>
         <Typography variant="subtitle1" noWrap >
-          {flight_id.return_dest_airport}
+          {flight.return_dest_airport}
         </Typography>
       </Item>
         </Stack>

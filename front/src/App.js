@@ -16,7 +16,7 @@ import LoginStore from './store/LoginStore';
 
 export default function App() {
   const [modal, setModal] = useState(false);
-  const [account, setAccount] = useState([])
+  const [account, setAccount] = useState([]);
   const ls = LoginStore;
   let [isAuthenticated, setisAuthenticated] = useState(localStorage.getItem('token') ? true : false)
   
@@ -77,7 +77,7 @@ export default function App() {
           })
           .then(res => res.json())
           .then((json)=>{
-            ls.setUser( json.user.username);
+            console.log(json)
             ls.setToken(json.token);
             ls.userHasAuthenticated(true);
           })

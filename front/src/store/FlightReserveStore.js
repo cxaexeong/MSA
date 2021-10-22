@@ -1,9 +1,12 @@
 import {makeAutoObservable, runInAction } from "mobx";
 // import {makeObservable, observable, action } from "mobx";
 import mypageApi from "../api/MypageApi";
+import ANHApi from "../api/ANHApi";
+import loginStore from "./LoginStore";
 
 class FlightReserveStore{
   flight = {};
+  allFlights = [];
   flights = [];
   modalOpen = false;
   depart_airline = "";
@@ -28,7 +31,8 @@ class FlightReserveStore{
 
   constructor() {
       makeAutoObservable(this, {}, { autoBind: true });
-      this.selectAll();
+      this.selectFlightReservation('99','99');
+      this.selectAllA();
     }
 
   // 로그인 구현끝나면 파라미터로 id 받아와야함
@@ -36,7 +40,19 @@ class FlightReserveStore{
     try {
       const results = await mypageApi.flightReserveList(1,'99','99');
       runInAction(() => this.flights = results);
-      console.log(this.flights);
+      // console.log(this.flights);
+      // console.log(loginStore.username);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  async selectAllA(){
+    try {
+      const results = await ANHApi.airportList('99','99');
+      runInAction(() => this.allFlights = results);
+      // console.log(this.allFlights);
+
     } catch(error) {
       console.log(error);
     }
@@ -52,10 +68,39 @@ class FlightReserveStore{
     }
   }
 
+  async reserveAirport(fid){
+    try {
+      await ANHApi.airportReserve(fid, 1, this.oiCode, this.cCode);
+      // console.log(this.oiCode,this.cCode);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  async detailAirport(id){
+    try {
+      const results = await ANHApi.airportDetail(id);
+      runInAction(() => this.flight = results);
+      console.log(this.flight);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  async selectFlightList(oi,c){
+    try {
+      const results = await ANHApi.airportList(oi,c);
+      runInAction(() => this.allFlights = results);
+    } catch(error) {
+      console.log(error);
+    }
+    // console.log(oi, "###",c);
+  }
+
   // 로그인 구현끝나면 파라미터로 id 받아와야함
   async selectFlightReservation(oi,c){
     try {
-      const results = await mypageApi.flightReserveList(1,oi,c);
+      const results = await mypageApi.flightReserveList(loginStore.username,oi,c);
       runInAction(() => this.flights = results);
       console.log(this.flights);
     } catch(error) {
@@ -83,20 +128,43 @@ class FlightReserveStore{
     this.return_et = flight.flight_id.return_et;
     this.return_via = flight.flight_id.return_via;
     this.price = flight.flight_id.price;
+    
+
+
     // console.log(this.room.room_id.name);
+  }
+
+  setAirport(flight){
+    this.flight = flight;
+    this.imgUrl1 = flight.imgUrl1;
+    this.imgUrl2 = flight.imgUrl2;
+    this.depart_airline = flight.depart_airline;
+    this.depart_dep_airport = flight.depart_dep_airport;
+    this.depart_dest_airport = flight.depart_dest_airport;
+    this.depart_etd = flight.depart_etd;
+    this.depart_eta = flight.depart_eta;
+    this.depart_et = flight.depart_et;
+    this.depart_via = flight.depart_via;
+    this.return_airline = flight.return_airline;
+    this.return_dep_airport = flight.return_dep_airport;
+    this.return_dest_airport = flight.return_dest_airport;
+    this.return_etd = flight.return_etd;
+    this.return_eta = flight.return_eta;
+    this.return_et = flight.return_et;
+    this.return_via = flight.return_via;
+    this.price = flight.price;
+    this.oiCode = flight.oi_code;
+    this.cCode = flight.c_code;
   }
 
   setModalOpen(isOpen){
     this.modalOpen = isOpen;
   }
 
-  // setOiCode(oi){
-  //   this.oiCode = oi;
-  // }
-
-  // setModal(c){
-  //   this.cCode = c;
-  // }
+  setCode(oi, c){
+    this.oiCode = oi;
+    this.cCode=c;
+  }
 }
 
 export default new FlightReserveStore();

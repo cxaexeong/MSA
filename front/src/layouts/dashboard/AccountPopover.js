@@ -23,7 +23,7 @@ const MENU_OPTIONS = [
   {
     label: 'Mypage',
     icon: personFill,
-    linkTo: '/dashboard/mypage/'
+    linkTo: '/dashboard/user/'
   },
 ];
 
@@ -106,11 +106,20 @@ export default function AccountPopover(props) {
           </MenuItem>
         ))}
 
+        {ls.authenticated === true
+        ?
         <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined" onClick={()=>{ls.handleLogout();navigate('/dashboard/app', { replace: true }); }}>
             Logout
           </Button>
         </Box>
+        :
+        <Box sx={{ p: 2, pt: 1.5 }}>
+          <Button fullWidth color="inherit" variant="outlined" onClick={()=>{navigate('/login/', { replace: true }); }}>
+            Login
+          </Button>
+        </Box>
+        }
       </MenuPopover>
     </>
   );

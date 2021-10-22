@@ -2,11 +2,12 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from mypage.models import *
 from mypage.serializers import *
-from django.db.models import Count, Q
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -14,20 +15,26 @@ def index(request):
 @api_view(['GET','POST'])
 def room_reserve_list(request, uid, oi, c):
     if oi == "99" and c == "99":
-        room_reservation = RoomReservation.objects.filter(user_id=uid)
+        # room_reservation = RoomReservation.objects.filter(user_id=uid).values('room_id')
+        room_reservation = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid).values('room_id'))
     elif c == "99":
-        room_reservation = RoomReservation.objects.filter(user_id=uid, oi_code=oi)
+        # room_reservation = RoomReservation.objects.filter(user_id=uid, oi_code=oi).values('room_id')
+        room_reservation = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid, oi_code=oi).values('room_id'))
+
     else:
-        room_reservation = RoomReservation.objects.filter(user_id=uid, oi_code=oi, c_code=c)
+        # room_reservation = RoomReservation.objects.filter(user_id=uid, oi_code=oi, c_code=c).values('room_id')
+        room_reservation = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid), oi_code=oi, c_code=c.values('room_id'))
 
-    print(room_reservation)
+    # rooms = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid).values('room_id'))
+    serializer = RoomSerializer(room_reservation ,many=True)
+    print(serializer.data)
 
-    serializer = RoomReservationSerializer(room_reservation ,many=True)
     return Response(serializer.data)
 
 @api_view(['GET','DELETE'])
-def room_reserve_delete(request,pk):
-    room = RoomReservation.objects.get(id=pk)
+def room_reserve_delete(request,uid,rid):
+    print(uid,rid)
+    room = RoomReservation.objects.get(user_id=uid,room_id=rid)
     room.delete()
     return Response({"Message: Success"})
 

@@ -14,7 +14,7 @@ const ProductImgStyle = styled('img')({
 
 function RoomReservationCard({room}) {
   // db랑 변수명 같아야함
-  const { room_id } = room;
+  // const { room_id } = room;
   const rs = RoomReserveStore;
 //  onClick={()=>RoomModal(room)}
   return (
@@ -22,22 +22,22 @@ function RoomReservationCard({room}) {
     <Card onClick={()=>{rs.setRoom(room); rs.setModalOpen(true)}}>
     
       <Box sx={{ pt: '100%', position: 'relative' }}>
-      <ProductImgStyle alt={room_id.name} src={room_id.imgUrl} />
+      <ProductImgStyle alt={room.name} src={room.imgUrl} />
       </Box>
       
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink} onClick={()=>console.log(room_id.name)}>
+        <Link to="#" color="inherit" underline="hover" component={RouterLink} onClick={()=>console.log(room.name)}>
           <Typography variant="subtitle1" noWrap >
-            {room_id.name}
+            {room.name}
           </Typography>
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
         <Typography variant="subtitle2">
             &nbsp;
-            {room_id.location}
+            {room.location}
             <br/>
-            {room_id.price}
+            {room.price}
           </Typography>
         </Stack>
 

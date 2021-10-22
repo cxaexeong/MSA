@@ -22,7 +22,7 @@ import {
 } from '@mui/material';
 //
 import Scrollbar from '../../Scrollbar';
-import ColorManyPicker from '../../ColorManyPicker';
+
 
 // ----------------------------------------------------------------------
 
@@ -32,8 +32,8 @@ export const SORT_BY_OPTIONS = [
   { value: 'priceDesc', label: 'Price: High-Low' },
   { value: 'priceAsc', label: 'Price: Low-High' }
 ];
-export const FILTER_GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
-export const FILTER_CATEGORY_OPTIONS = ['All', 'Shose', 'Apparel', 'Accessories'];
+export const FILTER_GENDER_OPTIONS = ['America', 'Europe', 'Aisa'];
+export const FILTER_CATEGORY_OPTIONS = ['All', 'Airplane', 'Accommodation', 'Activity'];
 export const FILTER_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 export const FILTER_PRICE_OPTIONS = [
   { value: 'below', label: 'Below $25' },
@@ -68,7 +68,7 @@ export default function ShopFilterSidebar({
   onCloseFilter,
   formik
 }) {
-  const { values, getFieldProps, handleChange } = formik;
+  const { values, getFieldProps } = formik;
 
   return (
     <>
@@ -111,7 +111,7 @@ export default function ShopFilterSidebar({
               <Stack spacing={3} sx={{ p: 3 }}>
                 <div>
                   <Typography variant="subtitle1" gutterBottom>
-                    Gender
+                    Country
                   </Typography>
                   <FormGroup>
                     {FILTER_GENDER_OPTIONS.map((item) => (
@@ -141,9 +141,9 @@ export default function ShopFilterSidebar({
                   </RadioGroup>
                 </div>
 
-                <div>
+                {/* <div>
                   <Typography variant="subtitle1" gutterBottom>
-                    Colour
+                    Colors
                   </Typography>
                   <ColorManyPicker
                     name="colors"
@@ -152,7 +152,7 @@ export default function ShopFilterSidebar({
                     onChecked={(color) => values.colors.includes(color)}
                     sx={{ maxWidth: 36 * 4 }}
                   />
-                </div>
+                </div> */}
 
                 <div>
                   <Typography variant="subtitle1" gutterBottom>

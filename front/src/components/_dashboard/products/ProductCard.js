@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // material
-import {  Box, Card, Link, Typography, Stack } from '@mui/material';
-import { Popup, Rating } from 'semantic-ui-react'
+import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // utils
-import { fCurrency } from '../../../utils/formatNumber';
+
 //
-import Label from '../../Label';
-import ColorPreview from '../../ColorPreview';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -26,35 +25,28 @@ ShopProductCard.propTypes = {
   product: PropTypes.object
 };
 
-export default function ShopProductCard({ room }) {
-  const { room_id } = room;
+export default function ShopProductCard({ product }) {
+  const { product_id, comment, stage } = product;
+
   return (
-    
     <Card>
-    
       <Box sx={{ pt: '100%', position: 'relative' }}>
-      <ProductImgStyle alt={room_id.name} src={room_id.imgUrl} />
+      
+     
+   
+        <ProductImgStyle alt={product_id.name} src={product_id.imgUrl} />
+        
       </Box>
-      
-      
-      {/* ()=>이거안하면 루프도는동안 계속 호출 */}
+
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink} onClick={()=>console.log(room_id.name)}>
-          <Typography variant="subtitle1" noWrap >
-            {room_id.name}
+        <Link to="/dashboard/Calendar/" color="inherit" underline="hover" component={RouterLink} >
+          <Typography variant="subtitle2" noWrap >
+            {product_id.name}
           </Typography>
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Typography variant="subtitle2">
-            &nbsp;
-            {room_id.location}
-          </Typography>
-        </Stack>
-
-      {/* product 색깔분류 */}
-        {/* <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+         
           <Typography variant="subtitle1">
             <Typography
               component="span"
@@ -64,14 +56,13 @@ export default function ShopProductCard({ room }) {
                 textDecoration: 'line-through'
               }}
             >
-              {priceSale && fCurrency(priceSale)}
+              
             </Typography>
             &nbsp;
-            {fCurrency(price)}
+           
           </Typography>
-        </Stack> */}
+        </Stack>
       </Stack>
     </Card>
-    
   );
 }

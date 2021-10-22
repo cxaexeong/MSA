@@ -6,7 +6,7 @@ import Page from '../components/Page';
 import { RoomReservationList, FlightReservationList,  TodoList } from '../components/_dashboard/user';
 import RoomReserveStore from '../store/RoomReserveStore';
 import FlightReserveStore from '../store/FlightReserveStore';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import SelectOptions from '../store/SelectOptions';
 
 // ----------------------------------------------------------------------
@@ -22,6 +22,12 @@ export default function MyPage() {
   const cOptions00 = SelectOptions.cOptions00;
   const cOptions01 = SelectOptions.cOptions01;
   const cOptions99 = SelectOptions.cOptions99;
+
+  useEffect(() => {
+    console.log("********");
+    console.log(localStorage.getItem('token'));
+    rs.selectRoomReservation('99','99');
+  },[]);
 
   const oisetCode = (e, {value}) => {
     // e.persist();
@@ -40,7 +46,6 @@ export default function MyPage() {
     }
     else if(menu === 1){
       // flight list filtering
-      console.log("#####2");
       fs.selectFlightReservation(oiselect, cselect);
     }
     else if(menu === 2){
@@ -58,7 +63,7 @@ export default function MyPage() {
       <Container>
       
         <Stack>         
-        <Menu compact>
+        <Menu compact >
         <Menu.Item onClick={()=>setMenu(0)}
           name='info'
         >Info

@@ -30,13 +30,13 @@ export default function RegisterForm() {
     let password = values.password
     let first_name = values.firstName
     let last_name = values.lastName
-    axios.post('http://localhost:8000/account/api/register',{
+    axios.post('http://localhost:8000/user/',{
             username,
             password,
             first_name,
             last_name,
         }).then(function (res){
-            console.log(res)
+            // console.log(res)
         }).catch(function (err){
             console.log(err)
             alert("사용불가능한 아이디입니다.")

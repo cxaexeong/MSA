@@ -1,4 +1,4 @@
-"""config URL Configuration
+""" URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -22,9 +22,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('vp/', include('vp.urls')),
     path('mypage/', include('mypage.urls')),
-    path('account/', include('account.urls')),
+
     path('validate/', validate_jwt_token),
     path('login/', obtain_jwt_token),
+
     path('verify/', verify_jwt_token),
     path('refresh/', refresh_jwt_token),
+
+    path('user/', include('user.urls')),
+    path('localstatus/', include('localstatus.urls')),
+
 ]
