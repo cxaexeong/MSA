@@ -6,7 +6,6 @@ import moment from 'moment';
 class TodoStore{
   todos = {};
   todo = [];
-  uid = '1'; // user 완성되면 그 값 가져와야함 
   modalOpen = false;
   title="";
   contents="";
@@ -18,14 +17,14 @@ class TodoStore{
 
   constructor() {
       makeAutoObservable(this, {}, { autoBind: true });
-      this.selectAll();
+      // this.selectAll();
       this.start_date = this.d.getFullYear()+"-"+(this.d.getMonth()+1)+"-"+this.d.getDate() ;
     }
 
   // 로그인 구현끝나면 파라미터로 id 받아와야함
   async selectAll(){
     try {
-      const results = await mypageApi.todoList(this.uid);
+      const results = await mypageApi.todoList(localStorage.id);
       runInAction(() => this.todos = results);
       // console.log(this.todos);
     } catch(error) {
@@ -35,7 +34,7 @@ class TodoStore{
 
   async todoCreate() {
     try {
-        await mypageApi.todoCreate(this.uid,this.title,this.contents,this.start_date,this.end_date);
+        await mypageApi.todoCreate(localStorage.id,this.title,this.contents,this.start_date,this.end_date);
         this.selectAll();
     } catch (error) {
         console.log(error)
@@ -46,7 +45,7 @@ class TodoStore{
 
   async todoUpdate() {
     try {
-        await mypageApi.todoUpdate(this.todo.id, this.uid,this.title,this.contents,this.start_date,this.end_date);
+        await mypageApi.todoUpdate(this.todo.id, localStorage.id,this.title,this.contents,this.start_date,this.end_date);
         this.modalOpen = false;
         this.selectAll();
     } catch (error) {
@@ -81,7 +80,6 @@ class TodoStore{
     this.contents = todo.contents;
     this.start_date = todo.start_date ;
     this.end_date = todo.end_date;
-    console.log("###",this.start_date)
     this.selectedStartDate = moment(todo.start_date).toDate()
     this.selectedEndDate = moment(todo.end_date).toDate()
   }

@@ -17,7 +17,7 @@ function AirportReservationCard({flight}) {
   const fs = FlightReserveStore;
   return (
     
-    <Card onClick={()=>{fs.setAirport(flight); fs.setModalOpen(true)}}>
+    <Card onClick={()=>{fs.setFlight(flight); fs.setModalOpen(true); fs.setCode(flight.oi_code,flight.c_code)}}>
     <Grid container spacing={1}>
     <Grid item xs={6} sm={3}>
     <Stack   spacing={1} sx={{ p: 4 }}>

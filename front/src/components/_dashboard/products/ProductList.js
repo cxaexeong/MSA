@@ -17,7 +17,7 @@ function ProductList({ products, ...other }) {
   const productStore = ProductStore;
   return (
    <Grid container spacing={3} {...other}>
-      {productStore.lists.map((product) => (
+      {productStore.products.map((product) => (
         <Grid key={product.id} item xs={12} sm={6} md={3}>
           <ShopProductCard product={product} />
           

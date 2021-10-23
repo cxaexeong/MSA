@@ -17,7 +17,7 @@ class FlightReservation(models.Model):
     c_code = models.CharField(max_length=4)
 
 class Todo(models.Model):
-    user_id = models.ForeignKey("vp.UserTemp", related_name="usertodo", on_delete=models.CASCADE, db_column="user_id")
+    user_id = models.ForeignKey(User, related_name="usertodo", on_delete=models.CASCADE, db_column="user_id")
     title = models.CharField(max_length=50)
     contents = models.CharField(max_length=500)
     start_date = models.DateField()

@@ -21,8 +21,14 @@ function TodoDetailCard({todo}) {
                 <Typography variant="subtitle1" noWrap >
                     {todo.start_date}
                 </Typography>
+                <br/>
                 <Typography variant="subtitle1" noWrap >
                     {todo.end_date}
+                </Typography>
+                </Item>
+                <Item>
+                <Typography variant="h4" noWrap >
+                    {todo.contents}
                 </Typography>
                 </Item>
                 <Item>

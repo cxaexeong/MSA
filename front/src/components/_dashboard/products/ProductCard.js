@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate  } from 'react-router-dom';
 // material
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
-// utils
-
+import ProductStore from '../../../store/ProductStore';
 //
 
 
@@ -26,10 +25,11 @@ ShopProductCard.propTypes = {
 };
 
 export default function ShopProductCard({ product }) {
-  const { product_id, comment, stage } = product;
+  const {product_id, comment,stage } = product;
+  const navigate = useNavigate();
 
   return (
-    <Card>
+    <Card onClick={()=> {ProductStore.setProduct(product, product_id);  navigate('/dashboard/Calendar/', { replace: true }) } }>
       <Box sx={{ pt: '100%', position: 'relative' }}>
       
      

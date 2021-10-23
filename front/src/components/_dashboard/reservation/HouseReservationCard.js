@@ -18,7 +18,7 @@ function HouseReservationCard({room}) {
 //  onClick={()=>RoomModal(room)}
   return (
     
-    <Card onClick={()=>{rs.setHouse(room); rs.setModalOpen(true)}}>
+    <Card onClick={()=>{rs.setRoom(room); rs.setModalOpen(true); rs.setCode(room.oi_code, room.c_code)}}>
     
       <Box sx={{ pt: '100%', position: 'relative' }}>
       <ProductImgStyle alt={room.name} src={room.imgUrl} />

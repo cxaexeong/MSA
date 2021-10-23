@@ -75,15 +75,18 @@ export default function AccountPopover(props) {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            {account.displayName}
+          {localStorage.getItem('firstname')}           {localStorage.getItem('lastname')}
+
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+          {localStorage.getItem('user')}
           </Typography>
         </Box>
 
         <Divider sx={{ my: 1 }} />
-
+        {ls.authenticated === true
+        ?
+        <>
         {MENU_OPTIONS.map((option) => (
           <MenuItem
             key={option.label}
@@ -105,8 +108,23 @@ export default function AccountPopover(props) {
             {option.label}
           </MenuItem>
         ))}
-
-        {ls.authenticated === true
+        <Box sx={{ p: 2, pt: 1.5 }}>
+          <Button fullWidth color="inherit" variant="outlined" onClick={()=>{ls.handleLogout();navigate('/dashboard/app', { replace: true }); }}>
+            Logout
+          </Button>
+        </Box>
+      </>
+      :
+      <Box sx={{ p: 2, pt: 1.5 }}>
+          <Button fullWidth color="inherit" variant="outlined" onClick={()=>{navigate('/login/', { replace: true }); }}>
+            Login
+          </Button>
+          <Button fullWidth color="inherit" variant="outlined" onClick={()=>{navigate('/register/', { replace: true }); }}>
+            Register
+          </Button>
+        </Box>
+            }
+        {/* {ls.authenticated === true
         ?
         <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined" onClick={()=>{ls.handleLogout();navigate('/dashboard/app', { replace: true }); }}>
@@ -119,7 +137,7 @@ export default function AccountPopover(props) {
             Login
           </Button>
         </Box>
-        }
+        } */}
       </MenuPopover>
     </>
   );

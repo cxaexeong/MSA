@@ -9,8 +9,11 @@ def index(request):
 
 
 @api_view(['GET'])
-def localstatus_list(request):
-    status_list = ProductDetail.objects.all()
+def localstatus_list(request,oi):
+    if oi == '9':
+        status_list = ProductDetail.objects.all();
+    else:
+        status_list = ProductDetail.objects.filter(oi_code=oi);
 
     serializer = LocalDetailSerializer(status_list, many=True)
     return Response(serializer.data)

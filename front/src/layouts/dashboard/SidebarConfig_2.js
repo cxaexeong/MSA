@@ -23,7 +23,7 @@ const sidebarConfig = [
     icon: getIcon(peopleFill)
   },
   {
-    title: 'product',
+    title: 'status',
     path: '/dashboard/products',
     icon: getIcon(shoppingBagFill)
   },
@@ -33,21 +33,6 @@ const sidebarConfig = [
     icon: getIcon(fileTextFill)
   },
 
-  {
-    title: 'logout',
-    path: '/dashboard/app',
-    icon: getIcon(lockFill)
-  },
-  {
-    title: 'register',
-    path: '/register',
-    icon: getIcon(personAddFill)
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: getIcon(alertTriangleFill)
-  }
 ];
 
 

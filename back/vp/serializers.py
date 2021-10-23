@@ -1,10 +1,6 @@
 from rest_framework import serializers
 from vp.models import *
 
-class UserTempSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = UserTemp
-        fields = ['id','email']
 
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

@@ -1,13 +1,5 @@
 from django.db import models
 
-class UserTemp(models.Model):
-    # 회원가입/로그인기능 구현하면 수
-    # uid = models.CharField(max_length=10)
-    # pw = models.CharField(max_length=10)
-    email = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.email
 
 
 class Room(models.Model):

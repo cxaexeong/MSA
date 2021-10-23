@@ -17,11 +17,7 @@ const sidebarConfig = [
     path: '/dashboard/app',
     icon: getIcon(pieChart2Fill)
   },
-  {
-    title: 'myPage',
-    path: '/dashboard/user',
-    icon: getIcon(peopleFill)
-  },
+ 
   {
     title: 'status',
     path: '/dashboard/products',
@@ -33,20 +29,10 @@ const sidebarConfig = [
     icon: getIcon(fileTextFill)
   },
   {
-    title: 'login',
-    path: '/login',
-    icon: getIcon(lockFill)
-  },
-  {
     title: 'register',
     path: '/register',
     icon: getIcon(personAddFill)
   },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: getIcon(alertTriangleFill)
-  }
 ];
 
 export default sidebarConfig;

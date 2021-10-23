@@ -18,8 +18,8 @@ class MypageApi{
             .then((response) => response.data);
     }
 
-    flightReserveDelete(id) {
-        return axios.delete(this.URL+`flightdelete/`+`${id}/`)
+    flightReserveDelete(uid, fid) {
+        return axios.delete(this.URL+`flight/delete/`+`${uid}/`+`${fid}/`)
             .then((response) => response.data);
     }
 

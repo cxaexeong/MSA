@@ -7,3 +7,4 @@ export { default as FlightReservationList } from './FlightReservationList';
 export { default as FlightReservationCard } from './FlightReservationCard';
 export { default as TodoList } from './TodoList';
 export { default as TodoDetailCard } from './TodoDetailCard';
+export { default as Info } from './Info';

@@ -3,9 +3,10 @@ import { Container, Stack, Button} from '@mui/material';
 import { Menu, Select, } from 'semantic-ui-react'
 // components
 import Page from '../components/Page';
-import { RoomReservationList, FlightReservationList,  TodoList } from '../components/_dashboard/user';
+import { RoomReservationList, FlightReservationList,  TodoList, Info } from '../components/_dashboard/user';
 import RoomReserveStore from '../store/RoomReserveStore';
 import FlightReserveStore from '../store/FlightReserveStore';
+import TodoStore from '../store/TodoStore';
 import { useState,useEffect } from 'react';
 import SelectOptions from '../store/SelectOptions';
 
@@ -18,15 +19,16 @@ export default function MyPage() {
 
   const rs = RoomReserveStore;
   const fs = FlightReserveStore;
+  const ts = TodoStore;
   const oiOptions = SelectOptions.oiOptions;
   const cOptions00 = SelectOptions.cOptions00;
   const cOptions01 = SelectOptions.cOptions01;
   const cOptions99 = SelectOptions.cOptions99;
 
   useEffect(() => {
-    console.log("********");
-    console.log(localStorage.getItem('token'));
     rs.selectRoomReservation('99','99');
+    fs.selectFlightReservation('99','99');
+    ts.selectAll();
   },[]);
 
   const oisetCode = (e, {value}) => {
@@ -103,7 +105,9 @@ export default function MyPage() {
           sx={{ mb: 3 }}
         >
         </Stack>
-
+        {menu === 0 &&
+          <Info />
+        }
         {menu === 1 &&
           <FlightReservationList />
         }

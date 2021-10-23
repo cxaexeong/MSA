@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx";
 // import {makeObservable, observable, action } from "mobx";
 import { Link as  useNavigate, Navigate } from 'react-router-dom';
+import RoomReserveStore from "./RoomReserveStore";
 
 
 class LoginStore{
@@ -17,7 +18,7 @@ class LoginStore{
 
     setUser(id, email,firstName, lastName ){
         this.id = id;
-        this.emial = email;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -33,7 +34,7 @@ class LoginStore{
     userHasAuthenticated(authenticated) { 
         this.authenticated = (authenticated)
         // console.log("*****");
-        localStorage.setItem('token',this.token);
+        // localStorage.setItem('token',this.token);
         // console.log(localStorage.getItem('token'));
         
       }//회원가입이나 로그인이 성공했을 때 토큰을 저장
@@ -48,6 +49,11 @@ class LoginStore{
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('id');
+        localStorage.removeItem('fullname');
+        localStorage.removeItem('firstname');
+        localStorage.removeItem('lastname');
+        localStorage.removeItem('email');
+        RoomReserveStore.rooms=[]
     }//로그아웃
 }
 export default new LoginStore();

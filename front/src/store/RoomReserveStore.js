@@ -3,6 +3,7 @@ import {makeAutoObservable, runInAction } from "mobx";
 import mypageApi from "../api/MypageApi";
 import ANHApi from "../api/ANHApi";
 import loginStore from "./LoginStore";
+import productStore from "./ProductStore";
 
 class RoomReserveStore{
   room = {};
@@ -10,14 +11,14 @@ class RoomReserveStore{
   rooms = [];
   allRooms = [];
   modalOpen = false;
-  name =""
-  location = "";
-  imgUrl = "";
-  rating = 0;
-  reviews =  0;
-  price = "";
-  start_date = "";
-  end_date = "";
+  // name =""
+  // location = "";
+  // imgUrl = "";
+  // rating = 0;
+  // reviews =  0;
+  // price = "";
+  // start_date = "";
+  // end_date = "";
   oiCode="";
   cCode="";
 
@@ -30,18 +31,17 @@ class RoomReserveStore{
     }
 
   // 로그인 구현끝나면 파라미터로 id 받아와야함
-  async selectAll(){
-    try {
-      const results = await mypageApi.roomReserveList(1,'99','99');
-      runInAction(() => this.rooms = results);
-    } catch(error) {
-      console.log(error);
-    }
-  }
+  // async selectAll(){
+  //   try {
+  //     const results = await mypageApi.roomReserveList(1,'99','99');
+  //     runInAction(() => this.rooms = results);
+  //   } catch(error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async deleteRoomReservation(){
     try {
-      console.log(this.room.id)
       await mypageApi.roomReserveDelete(localStorage.id, this.room.id);
       this.rooms = this.rooms.filter(room => room.id !== this.room.id);
     } catch(error) {
@@ -49,29 +49,27 @@ class RoomReserveStore{
     } 
   }
 
-  async selectAllH(){
-    try {
-      const results = await ANHApi.houseList('99','99');
-      runInAction(() => this.allRooms = results);
-    } catch(error) {
-      console.log(error);
-    }
-  }
+  // async selectAllH(){
+  //   try {
+  //     const results = await ANHApi.houseList('99','99');
+  //     runInAction(() => this.allRooms = results);
+  //   } catch(error) {
+  //     console.log(error);
+  //   }
+  // }
 
-  async detailHouse(uid, oi, c){
-    try {
-      const results = await ANHApi.houseDetail(uid, oi, c);
-      runInAction(() => this.room = results);
-    } catch(error) {
-      console.log(error);
-    }
-  }
+  // async detailHouse(uid, oi, c){
+  //   try {
+  //     const results = await ANHApi.houseDetail(uid, oi, c);
+  //     runInAction(() => this.room = results);
+  //   } catch(error) {
+  //     console.log(error);
+  //   }
+  // }
 
-  async reserveHouse(id,uid){
+  async reserveHouse(rid){
     try {
-      const results = await ANHApi.houseReserve(id, uid);
-      runInAction(() => this.room = results);
-      console.log(this.room);
+      await ANHApi.houseReserve(rid, localStorage.id, this.oiCode, this.cCode);
     } catch(error) {
       console.log(error);
     }
@@ -91,7 +89,7 @@ class RoomReserveStore{
 
     async selectRoomList(oi,c){
       try {
-        const results = await ANHApi.houseList(oi,c);
+        const results = await ANHApi.houseList(oi,c,productStore.startDate,productStore.endDate);
         runInAction(() => this.allRooms = results);
         console.log(this.allRooms);
       } catch(error) {
@@ -102,25 +100,30 @@ class RoomReserveStore{
 
   setRoom(room){
     this.room = room;
-    console.log("######");
+    // console.log("######");
 
-    console.log(this.room.id);
+    // console.log(this.room.id);
   }
 
-  setHouse(room){
-    this.room = room;
-    this.name = room.name;
-    this.location = room.location;
-    this.imgUrl = room.imgUrl;
-    this.rating = room.rating;
-    this.reviews =  room.reviews;
-    this.price = room.price;
-    this.start_date = room.start_date;
-    this.end_date = room.end_date;
-  }
+  // setHouse(room){
+  //   this.room = room;
+  //   this.name = room.name;
+  //   this.location = room.location;
+  //   this.imgUrl = room.imgUrl;
+  //   this.rating = room.rating;
+  //   this.reviews =  room.reviews;
+  //   this.price = room.price;
+  //   this.start_date = room.start_date;
+  //   this.end_date = room.end_date;
+  // }
 
   setModalOpen(isOpen){
     this.modalOpen = isOpen;
+  }
+
+  setCode(oi, c){
+    this.oiCode = oi;
+    this.cCode=c;
   }
 
 }

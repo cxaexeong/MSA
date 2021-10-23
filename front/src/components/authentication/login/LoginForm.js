@@ -62,16 +62,18 @@ export default function LoginForm(props) {
         username: values.email,
         password: values.password,
     }).then(function (res){
-        localStorage.setItem('token', res.data.token);
-       console.log(res)
+      localStorage.setItem('token', res.data.access);
+      console.log(res)
 
-        localStorage.setItem('user', values.email);
-        localStorage.setItem('id', res.data.user.id);
-        ls.setToken(res.data.access);
-        ls.setUser(res.data.user.id, res.data.user.username, res.data.user.first_name,res.data.user.last_name);
-        ls.userHasAuthenticated(true);
-        navigate('/dashboard/app/', { replace: true }); 
-        }).catch(function (err){
+       localStorage.setItem('user', values.email);
+       localStorage.setItem('id', res.data.user.id);
+       localStorage.setItem('firstname', res.data.user.first_name)
+       localStorage.setItem('lastname', res.data.user.last_name)
+       ls.setToken(res.data.token);
+       ls.setUser(res.data.user.id, res.data.user.username, res.data.user.first_name,res.data.user.last_name);
+       ls.userHasAuthenticated(true);
+       navigate('/dashboard/app/', { replace: true }); 
+       }).catch(function (err){
         console.log(err)
     })
     event.preventDefault();

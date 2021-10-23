@@ -8,8 +8,8 @@ class ProductApi{
     //         .then((response) => response.data);
     // }
 
-    localstatusList(){
-        return axios.get(this.URL)
+    localstatusList(oi){
+        return axios.get(this.URL+`${oi}/`)
             .then((response) => response.data);
     }
 

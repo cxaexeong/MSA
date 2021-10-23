@@ -2,12 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from mypage.models import *
 from mypage.serializers import *
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -15,20 +12,13 @@ def index(request):
 @api_view(['GET','POST'])
 def room_reserve_list(request, uid, oi, c):
     if oi == "99" and c == "99":
-        # room_reservation = RoomReservation.objects.filter(user_id=uid).values('room_id')
         room_reservation = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid).values('room_id'))
     elif c == "99":
-        # room_reservation = RoomReservation.objects.filter(user_id=uid, oi_code=oi).values('room_id')
         room_reservation = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid, oi_code=oi).values('room_id'))
-
     else:
-        # room_reservation = RoomReservation.objects.filter(user_id=uid, oi_code=oi, c_code=c).values('room_id')
         room_reservation = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid), oi_code=oi, c_code=c.values('room_id'))
 
-    # rooms = Room.objects.filter(id__in=RoomReservation.objects.filter(user_id=uid).values('room_id'))
     serializer = RoomSerializer(room_reservation ,many=True)
-    print(serializer.data)
-
     return Response(serializer.data)
 
 @api_view(['GET','DELETE'])
@@ -41,27 +31,32 @@ def room_reserve_delete(request,uid,rid):
 @api_view(['GET','POST'])
 def flight_reserve_list(request, uid, oi, c):
     if oi == "99" and c == "99":
-        flight_reservation = FlightReservation.objects.filter(user_id=uid)
+        flight_reservation = Flight.objects.filter(id__in=FlightReservation.objects.filter(user_id=uid).values('flight_id'))
     elif c == "99":
-        flight_reservation = FlightReservation.objects.filter(user_id=uid, oi_code=oi)
-    else:
-        flight_reservation = FlightReservation.objects.filter(user_id=uid, oi_code=oi, c_code=c)
+        flight_reservation = Flight.objects.filter(
+            id__in=FlightReservation.objects.filter(user_id=uid, oi_code=oi).values('flight_id'))
 
-    serializer = FlightReservationSerializer(flight_reservation ,many=True)
+    else:
+        flight_reservation = Flight.objects.filter(id__in=FlightReservation.objects.filter(user_id=uid), oi_code=oi,
+                                               c_code=c.values('flight_id'))
+
+    serializer = FlightSerializer(flight_reservation, many=True)
 
     return Response(serializer.data)
 
 @api_view(['GET','DELETE'])
-def flight_reserve_delete(request,pk):
-    flight = FlightReservation.objects.get(id=pk)
+def flight_reserve_delete(request,uid,fid):
+    flight = FlightReservation.objects.get(user_id=uid,flight_id=fid)
     flight.delete()
     return Response({"Message: Success"})
 
 
 @api_view(['GET','POST'])
 def todo_list(request, uid):
+    print(uid);
     todos = Todo.objects.filter(user_id=uid)
     serializer = TodoSerializer(todos, many=True)
+    print(serializer.data)
     return Response(serializer.data)
 
 

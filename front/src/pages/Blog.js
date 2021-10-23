@@ -5,10 +5,13 @@ import { Menu, Select, } from 'semantic-ui-react'
 import Page from '../components/Page';
 import RoomReserveStore from '../store/RoomReserveStore';
 import FlightReserveStore from '../store/FlightReserveStore';
-import { useState } from 'react';
+import ProductStore from '../store/ProductStore';
+import { useState,useEffect } from 'react';
 import SelectOptions from '../store/SelectOptions';
 import { AirportReservationList, HouseReservationList } from '../components/_dashboard/reservation';
 // import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../components/_dashboard/reservation';
+import { Form } from 'semantic-ui-react'
+import DatePicker from 'react-datepicker';
 
 
 // ----------------------------------------------------------------------
@@ -17,13 +20,21 @@ export default function Reservation() {
   const [menu, setMenu] = useState(1);
   const [oiselect, oisetSelect] = useState(99);
   const [cselect, csetSelect] = useState(99);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState();
 
   const rs = RoomReserveStore;
   const fs = FlightReserveStore;
+  const ps = ProductStore;
   const oiOptions = SelectOptions.oiOptions;
   const cOptions00 = SelectOptions.cOptions00;
   const cOptions01 = SelectOptions.cOptions01;
   const cOptions99 = SelectOptions.cOptions99;
+
+  useEffect(() => {
+    rs.selectRoomList('99', '99');
+    fs.selectFlightList('99', '99');
+  },[]);
 
   const oisetCode = (e, {value}) => {
     // e.persist();
@@ -43,11 +54,8 @@ export default function Reservation() {
     }
     else if(menu === 2){
       rs.selectRoomList(oiselect, cselect);
-      fs.setCode(oiselect, cselect);
+      rs.setCode(oiselect, cselect);
     }
-    // else if(menu === 3){
-    //   // schedule list filtering
-    // } 유즈이펙트구현
   };
 
   return (
@@ -81,6 +89,40 @@ export default function Reservation() {
           }
         
         <Button onClick={setList}>Search</Button>
+
+        </Menu>
+        </Stack>
+
+        <Stack>         
+        <Menu compact>
+        <Menu.Item >
+        <Form>
+            <Form.Group >
+              <Form.Field>
+              <DatePicker className="startdate"
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate}
+                  dateFormat='yyyy-MM-dd'
+        />
+              </Form.Field>
+                <Form.Field>
+                  <DatePicker
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                    selectsEnd
+                    startDate={startDate}
+                    endDate={endDate}
+                    minDate={startDate}
+                  dateFormat='yyyy-MM-dd'
+          />
+            </Form.Field>   
+      <Button onClick={()=>{ps.setDate(startDate,endDate); setList()}}>날짜변경</Button>
+            </Form.Group>  
+      </Form>
+      </Menu.Item>
         </Menu>
         </Stack>
     

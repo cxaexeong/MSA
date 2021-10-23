@@ -63,7 +63,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }, prop
     >
       {/* 홈으로 돌아가는 로고 버튼 */}
       <Box sx={{ px: 2.5, py: 3 }}>
-        <Box component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
+        <Box component={RouterLink} to="/dashboard/app" sx={{ display: 'inline-flex' }}>
           <Logo />
         </Box>
       </Box>
@@ -75,7 +75,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }, prop
             <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
+              {localStorage.getItem('user')}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 {account.role}
