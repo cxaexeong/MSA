@@ -116,8 +116,7 @@ export default function App() {
       <ScrollToTop />
       <GlobalStyles />
       <BaseOptionChartStyle />
-      <Router >
-      </Router>
+      <Router />
     </ThemeConfig>
     </>
   );

@@ -18,7 +18,7 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: homeFill,
-    linkTo: '/dashboard/'
+    linkTo: '/dashboard/app'
   },
   {
     label: 'Mypage',
@@ -109,7 +109,7 @@ export default function AccountPopover(props) {
           </MenuItem>
         ))}
         <Box sx={{ p: 2, pt: 1.5 }}>
-          <Button fullWidth color="inherit" variant="outlined" onClick={()=>{ls.handleLogout();navigate('/dashboard/', { replace: true }); }}>
+          <Button fullWidth color="inherit" variant="outlined" onClick={()=>{ls.handleLogout();navigate('/dashboard/app', { replace: true }); }}>
             Logout
           </Button>
         </Box>
