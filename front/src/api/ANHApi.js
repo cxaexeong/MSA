@@ -3,8 +3,8 @@ import axios from 'axios';
 class ANHApi{
     URL = '/vp/';
 
-    airportList(oi,c,s,e) {
-        return axios.get(this.URL+`airport/`+`${oi}/`+`${c}/`+`${s}/`+`${e}/`)
+    airportList(oi,c,sd,ed,s) {
+        return axios.get(this.URL+`airport/`+`${oi}/`+`${c}/`+`${sd}/`+`${ed}/`+`${s}/`)
             .then((response) => response.data);
     }
 
@@ -13,8 +13,8 @@ class ANHApi{
             .then((response) => response.data);
     }
 
-    houseList(oi,c,s,e) {
-        return axios.get(this.URL+`house/`+`${oi}/`+`${c}/`+`${s}/`+`${e}/`)
+    houseList(oi,c,sd,ed,s) {
+        return axios.get(this.URL+`house/`+`${oi}/`+`${c}/`+`${sd}/`+`${ed}/`+`${s}/`)
             .then((response) => response.data);
     }
 

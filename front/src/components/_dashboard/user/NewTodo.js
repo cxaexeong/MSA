@@ -49,6 +49,7 @@ function NewTodo() {
             value={ts.contents} onChange={(e)=>ts.setContents(e.target.value)}
             />
             <Button
+            floated='right'
             content="추가"
             labelPosition='right'
             icon='checkmark'

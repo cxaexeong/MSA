@@ -9,7 +9,7 @@ class Room(models.Model):
     location = models.CharField(max_length=100)
     rating = models.FloatField()
     reviews = models.IntegerField()
-    price = models.CharField(max_length=10)
+    price = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
     imgUrl = models.CharField(max_length=100)
@@ -34,7 +34,7 @@ class Flight(models.Model):
     return_eta = models.DateTimeField()
     return_et = models.CharField(max_length=10)
     return_via = models.CharField(max_length=30)
-    price = models.CharField(max_length=10)
+    price = models.IntegerField()
     imgUrl1 = models.CharField(max_length=100)
     imgUrl2 = models.CharField(max_length=100)
 

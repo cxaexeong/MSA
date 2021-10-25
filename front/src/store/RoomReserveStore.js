@@ -87,9 +87,9 @@ class RoomReserveStore{
     }
   }
 
-    async selectRoomList(oi,c){
+    async selectRoomList(oi,c,s){
       try {
-        const results = await ANHApi.houseList(oi,c,productStore.startDate,productStore.endDate);
+        const results = await ANHApi.houseList(oi,c,productStore.startDate,productStore.endDate,s);
         runInAction(() => this.allRooms = results);
         console.log(this.allRooms);
       } catch(error) {

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { Popover, Typography } from '@mui/material';
 import statusMap from '../../../store/statusMap';
 import ProductStore from '../../../store/ProductStore';
+import { observer } from 'mobx-react';
 
 const MapSizeWorld = styled.div`
 width: 90%;
@@ -73,7 +74,7 @@ function MainVectorMap() {
   const ps = ProductStore;
 
   const layerProps = {
-    onClick: ({ target }) => {setMessage(target.attributes.id.value)},
+    onClick: ({ target }) => {ps.viewData(target.attributes.id.value)},
   };
 
   const setAE = (event) => {
@@ -83,14 +84,15 @@ function MainVectorMap() {
   const setMessage = (t) => {
     console.log("######");
     // console.log(statusMap[t]);
-    ps.setList(statusMap[t])
-    setMsg(ps.name,
-      ps.stage,
-      ps.comment);
+    // ps.setList(statusMap[t])
+    // setMsg(ps.name,
+    //   ps.stage,
+    //   ps.comment);
   } 
 
   
     return (
+        <>
         <>
         <Select value={map} options={selectOptions} onChange={({value},e )=>{setMap(e.value);}}/>
 
@@ -107,7 +109,9 @@ function MainVectorMap() {
             </Map>
             </MapSizeKorea>
         }
-        <Popover
+</>
+<>
+<Popover
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -117,12 +121,17 @@ function MainVectorMap() {
           horizontal: 'center',
         }}
       >
-        <Typography sx={{ p: 2 }}>
-          {ps.stage}
-        </Typography>
-      </Popover>
+        {ps.filteredpd.map((product)=>(
+          <Typography key={product.id}>
+            지역 : {product.product_id.name}<br/>
+            단계 : {product.stage} <br/>
+            추가정보 : {product.comment} <br/>
+          </Typography>
+        ))}
+        </Popover>
+        </>
         </>
     );
 }
 
-export default MainVectorMap;
+export default observer(MainVectorMap);

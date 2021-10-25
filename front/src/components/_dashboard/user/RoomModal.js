@@ -68,16 +68,18 @@ function RoomModal() {
           <p id="unstyled-modal-description">가격 : {rs.room.price}</p>          </Grid>
           </Grid>
           <br/>
-          <Button color='black' onClick={() => {rs.setModalOpen(false); rs.deleteRoomReservation()}}>
-          예약취소
-        </Button>
+          
         <Button
+        floated='right'
           content="확인"
           labelPosition='right'
           icon='checkmark'
           onClick={() => rs.setModalOpen(false)}
           positive
         />
+        <Button floated='right' color='black' onClick={() => {rs.setModalOpen(false); rs.deleteRoomReservation()}}>
+          예약취소
+        </Button>
         </Box>
       </StyledModal>
 

@@ -16,35 +16,8 @@ import { Menu} from 'semantic-ui-react'
 // ----------------------------------------------------------------------
 
 export default function EcommerceShop() {
-  const [oiMenu, oiSetMenu] = useState(0);
-  useEffect(() => {
-    productStore.selectAll('9');
-  },[]);
+  
 
-//   const oiSetList = () => {
-//     if (oiMenu === 0) {
-//       productStore.selectAll('0');
-//     }
-//     else if (oiMenu === 1) {
-//       productStore.selectAll('1');
-//   }
-//     else if (oiMenu === 2) {
-//       productStore.selectAll('2');
-
-//   }
-//     else if (oiMenu === 3) {
-//       productStore.selectAll('3');
-
-//   }
-//     else if (oiMenu === 4) {
-//       productStore.selectAll('4');
-
-//    }
-//    else if (oiMenu === 5) {
-//     productStore.selectAll('9');
-
-//  }
-  // };
   return (
     <Page title="Dashboard: Products | Minimal-UI">
       <Container>

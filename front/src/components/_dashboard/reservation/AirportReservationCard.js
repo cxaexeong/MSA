@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import FlightReserveStore from '../../../store/FlightReserveStore';
 import { observer } from 'mobx-react';
 import { Item } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react'
 
 const ProductImgStyle = styled('img')({
   top: 0,

@@ -5,10 +5,12 @@ import ProductApi from "../api/ProductApi";
 class ProductStore{
     product = {};
     products = [];
+    filteredpr
     oiCode="";
     p ={};
     startDate = "";
     endDate = "";
+    filteredpd = [];
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
@@ -58,13 +60,18 @@ class ProductStore{
       }
 
     setDate(sd, ed){
-        console.log("#####");
 
         this.startDate = sd.getFullYear()+"-"+(sd.getMonth()+1)+"-"+sd.getDate()
         // this.startDate = (sd.getFullYear()).toString()+(sd.getMonth()+1).toString()+sd.getDate().toString();
         this.endDate= ed.getFullYear()+"-"+(ed.getMonth()+1)+"-"+ed.getDate();
         // this.endDate= ed.getFullYear().toString()+(ed.getMonth()+1).toString()+ed.getDate().toString();
-        console.log(this.startDate,this.endDate);
+    }
+
+    viewData(msg){
+        let filtered = (this.products).filter(function(element){
+            return element.status_code === msg ;
+        });
+        this.filteredpd = filtered;
     }
 }
 export default new ProductStore();

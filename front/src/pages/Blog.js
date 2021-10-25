@@ -12,7 +12,7 @@ import { AirportReservationList, HouseReservationList } from '../components/_das
 // import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../components/_dashboard/reservation';
 import { Form } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
-
+import moment from 'moment';
 
 // ----------------------------------------------------------------------
 
@@ -20,8 +20,10 @@ export default function Reservation() {
   const [menu, setMenu] = useState(1);
   const [oiselect, oisetSelect] = useState(99);
   const [cselect, csetSelect] = useState(99);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState();
+  const [fsort, fsortSelect] = useState(9);
+  const [rsort, rsortSelect] = useState(9);
+  const [startDate, setStartDate] = useState(moment(ProductStore.startDate).toDate());
+  const [endDate, setEndDate] = useState(moment(ProductStore.endDate).toDate());
 
   const rs = RoomReserveStore;
   const fs = FlightReserveStore;
@@ -30,6 +32,8 @@ export default function Reservation() {
   const cOptions00 = SelectOptions.cOptions00;
   const cOptions01 = SelectOptions.cOptions01;
   const cOptions99 = SelectOptions.cOptions99;
+  const sortFlightOptions = SelectOptions.sortFlightOptions;
+  const sortRoomOptions = SelectOptions.sortRoomOptions;
 
   useEffect(() => {
     rs.selectRoomList('99', '99');
@@ -46,14 +50,23 @@ export default function Reservation() {
     // e.persist();
     csetSelect(value);
   };
+  const setFsortCode = (e, {value}) => {
+    // e.persist();
+    console.log(value);
+    fsortSelect(value);
+  };
+  const setRsortCode = (e, {value}) => {
+    // e.persist();
+    rsortSelect(value);
+  };
 
   const setList = () => {
     if(menu === 1){
-      fs.selectFlightList(oiselect, cselect);
+      fs.selectFlightList(oiselect, cselect, fsort);
       fs.setCode(oiselect, cselect);
     }
     else if(menu === 2){
-      rs.selectRoomList(oiselect, cselect);
+      rs.selectRoomList(oiselect, cselect, rsort);
       rs.setCode(oiselect, cselect);
     }
   };
@@ -89,13 +102,27 @@ export default function Reservation() {
           }
         
         <Button onClick={setList}>Search</Button>
+        {menu===1 &&
+            <Select placeholder='----------' options={sortFlightOptions} onChange={setFsortCode}/>
+          }
+          {menu===2 &&
+            <Select placeholder='----------' options={sortRoomOptions} onChange={setRsortCode}/>
+          }
+        <Button onClick={setList}>Sort</Button>
 
         </Menu>
         </Stack>
-
+        <Stack
+          direction="row"
+          flexWrap="wrap-reverse"
+          alignItems="center"
+          justifyContent="flex-end"
+          sx={{ mb: 1 }}
+        >
+        </Stack>
         <Stack>         
-        <Menu compact>
-        <Menu.Item >
+        
+      
         <Form>
             <Form.Group >
               <Form.Field>
@@ -122,18 +149,8 @@ export default function Reservation() {
       <Button onClick={()=>{ps.setDate(startDate,endDate); setList()}}>날짜변경</Button>
             </Form.Group>  
       </Form>
-      </Menu.Item>
-        </Menu>
         </Stack>
     
-        <Stack
-          direction="row"
-          flexWrap="wrap-reverse"
-          alignItems="center"
-          justifyContent="flex-end"
-          sx={{ mb: 3 }}
-        >
-        </Stack>
 
         {menu === 1 &&
           <AirportReservationList />

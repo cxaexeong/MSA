@@ -29,7 +29,7 @@ class FlightReserveStore{
   // price = "";
   oiCode="";
   cCode="";
-
+  sort="";
   constructor() {
       makeAutoObservable(this, {}, { autoBind: true });
       // this.selectFlightReservation('99','99');
@@ -88,9 +88,9 @@ class FlightReserveStore{
   //   }
   // }
 
-  async selectFlightList(oi,c){
+  async selectFlightList(oi,c,s){
     try {
-      const results = await ANHApi.airportList(oi,c,productStore.startDate,productStore.endDate);
+      const results = await ANHApi.airportList(oi,c,productStore.startDate,productStore.endDate,s);
       runInAction(() => this.allFlights = results);
     } catch(error) {
       console.log(error);
@@ -166,6 +166,7 @@ class FlightReserveStore{
     this.oiCode = oi;
     this.cCode=c;
   }
+
 }
 
 export default new FlightReserveStore();

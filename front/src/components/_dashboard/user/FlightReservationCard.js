@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import FlightReserveStore from '../../../store/FlightReserveStore';
 import { observer } from 'mobx-react';
 import { Item } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react'
 
 const ProductImgStyle = styled('img')({
   top: 0, 
@@ -29,6 +30,7 @@ function FlightReservationCard({flight}) {
               <ProductImgStyle alt={flight.depart_airline} src={flight.imgUrl1} />
       </Box>
           </Item>
+
       <Item>
       <Box  sx={{ pt: '50%', position: 'relative' }}>
               <ProductImgStyle alt={flight.return_airline} src={flight.imgUrl2} />
@@ -61,6 +63,7 @@ function FlightReservationCard({flight}) {
       </Item>
     </Stack>
     </Grid>
+    
     <Grid item xs={6} sm={3}>
     <Stack   spacing={2} sx={{ p: 3 }}>
     <Item>
@@ -68,11 +71,13 @@ function FlightReservationCard({flight}) {
           {flight.depart_et}
       </Typography>
     </Item>
+
     <Item>
       <Typography variant="subtitle1" noWrap >
         {flight.depart_via}
       </Typography>
     </Item>
+
     <Item>
       <Typography variant="subtitle1" noWrap >
           {flight.return_et}
@@ -98,6 +103,7 @@ function FlightReservationCard({flight}) {
           {flight.depart_dest_airport}
         </Typography>
       </Item>
+
       <Item>
         <Typography variant="subtitle1" noWrap >
             {flight.return_eta}

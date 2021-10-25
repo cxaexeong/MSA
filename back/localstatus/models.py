@@ -14,6 +14,7 @@ class Product(models.Model):
 class ProductDetail(models.Model):
     oi_code = models.CharField(max_length=4,default='')
     stage = models.CharField(max_length=10, verbose_name='단계')
+    status_code = models.CharField(max_length=10, default='')
     comment = models.CharField(max_length=500, verbose_name='추가설명')
     product_id = models.ForeignKey("Product", related_name="product_id",
                                    on_delete=models.CASCADE, db_column="product_id")

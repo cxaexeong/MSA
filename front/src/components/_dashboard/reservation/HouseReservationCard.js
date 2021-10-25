@@ -36,6 +36,10 @@ function HouseReservationCard({room}) {
             &nbsp;
             {room.location}
             <br/>
+            ⭐{room.rating}
+            <br/>
+            ({room.reviews})
+            <br/>
             {room.price}
           </Typography>
         </Stack>

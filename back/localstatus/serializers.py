@@ -13,5 +13,5 @@ class LocalDetailSerializer(serializers.ModelSerializer):
     product_id = LocalstatusSerializer(read_only=True)
     class Meta:
         model = ProductDetail
-        fields = ['id','product_id','comment','stage']
+        fields = ['id','status_code', 'oi_code', 'product_id','comment','stage']
 

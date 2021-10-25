@@ -65,19 +65,21 @@ function RoomModal() {
           <p id="unstyled-modal-description">주소 : {rs.room.location}</p>
           <p id="unstyled-modal-description">점수 : {rs.room.rating}</p>
           <p id="unstyled-modal-description">리뷰개수 : {rs.room.reviews}</p>
-          <p id="unstyled-modal-description">가격 : {rs.room.price}</p>          </Grid>
+          <p id="unstyled-modal-description">가격 : ₩ {rs.room.price}</p>          </Grid>
           </Grid>
           <br/>
-          <Button color='black' onClick={() => {rs.setModalOpen(false); rs.reserveHouse(rs.room.id)}}>
-          예약
-        </Button>
+          
         <Button
+        floated='right'
           content="확인"
           labelPosition='right'
           icon='checkmark'
           onClick={() => rs.setModalOpen(false)}
           positive
         />
+        <Button floated='right' color='black' onClick={() => {rs.setModalOpen(false); rs.reserveHouse(rs.room.id)}}>
+          예약
+        </Button>
         </Box>
       </StyledModal>
 

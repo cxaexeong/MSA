@@ -62,7 +62,7 @@ export default function LoginForm(props) {
         username: values.email,
         password: values.password,
     }).then(function (res){
-      localStorage.setItem('token', res.data.access);
+      localStorage.setItem('token', res.data.token);
       console.log(res)
 
        localStorage.setItem('user', values.email);

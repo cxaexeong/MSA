@@ -18,10 +18,4 @@ def localstatus_list(request,oi):
     serializer = LocalDetailSerializer(status_list, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])
-def localstatus_detail(request, pk):
-    status_list = ProductDetail.objects.get(id=pk)
-
-    serializer = LocalDetailSerializer(status_list, many=False)
-    return Response(serializer.data)
 

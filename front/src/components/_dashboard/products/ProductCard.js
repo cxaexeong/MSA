@@ -20,22 +20,15 @@ const ProductImgStyle = styled('img')({
 
 // ----------------------------------------------------------------------
 
-ShopProductCard.propTypes = {
-  product: PropTypes.object
-};
 
 export default function ShopProductCard({ product }) {
-  const {product_id, comment,stage } = product;
+  const {product_id} = product;
   const navigate = useNavigate();
 
   return (
     <Card onClick={()=> {ProductStore.setProduct(product, product_id);  navigate('/dashboard/Calendar/', { replace: true }) } }>
-      <Box sx={{ pt: '100%', position: 'relative' }}>
-      
-     
-   
+      <Box sx={{ pt: '100%', position: 'relative' }}>  
         <ProductImgStyle alt={product_id.name} src={product_id.imgUrl} />
-        
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>

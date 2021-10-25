@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import {  Grid } from '@mui/material';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
+import Divider from '@mui/material/Divider';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -75,16 +76,18 @@ function FlightModal() {
           </Grid>
         </Grid>
         <br/>
-        <Button color='black' onClick={() => {fs.setModalOpen(false); fs.deleteFlightReservation()}}>
-          예약취소
-        </Button>
+        
         <Button
+        floated='right'
           content="확인"
           labelPosition='right'
           icon='checkmark'
           onClick={() => fs.setModalOpen(false)}
           positive
         />
+        <Button floated='right' color='black' onClick={() => {fs.setModalOpen(false); fs.deleteFlightReservation()}}>
+          예약취소
+        </Button>
          </Box>
       </StyledModal>
   )

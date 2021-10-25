@@ -1,3 +1,19 @@
+const sortFlightOptions = [
+  { key: '9', value: '9', text: '----------' },
+    { key: '0', value: '0', text: '가격높은순' },
+    { key: '1', value: '1', text: '가격낮은순' },
+    { key: '2', value: '2', text: '직항' },
+  ];
+
+  const sortRoomOptions = [
+    { key: '9', value: '9', text: '----------' },
+      { key: '0', value: '0', text: '가격높은순' },
+      { key: '1', value: '1', text: '가격낮은순' },
+      { key: '2', value: '2', text: '점수높은순' },
+      { key: '3', value: '3', text: '리뷰많은순' },
+    ];
+  
+
 const oiOptions = [
   { key: '99', value: '99', text: '----------' },
     { key: '00', value: '00', text: '국내' },
@@ -38,4 +54,4 @@ const cOptions99 = [
     { key: '0113', value: '13', text: '도쿄' },
   ];
 
-  export default {oiOptions, cOptions00, cOptions01, cOptions99};
+  export default {oiOptions, cOptions00, cOptions01, cOptions99, sortFlightOptions, sortRoomOptions};
