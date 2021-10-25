@@ -63,7 +63,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }, prop
     >
       {/* 홈으로 돌아가는 로고 버튼 */}
       <Box sx={{ px: 2.5, py: 3 }}>
-        <Box component={RouterLink} to="/dashboard/app" sx={{ display: 'inline-flex' }}>
+        <Box component={RouterLink} to="/dashboard" sx={{ display: 'inline-flex' }}>
           <Logo />
         </Box>
       </Box>

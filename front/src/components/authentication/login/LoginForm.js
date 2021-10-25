@@ -72,7 +72,7 @@ export default function LoginForm(props) {
        ls.setToken(res.data.token);
        ls.setUser(res.data.user.id, res.data.user.username, res.data.user.first_name,res.data.user.last_name);
        ls.userHasAuthenticated(true);
-       navigate('/dashboard/app/', { replace: true }); 
+       navigate('/dashboard/', { replace: true }); 
        }).catch(function (err){
         console.log(err)
     })
