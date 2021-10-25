@@ -14,6 +14,9 @@ class ProductStore{
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
+        let d = new Date();
+        this.startDate = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+        this.endDate = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         // this.selectAll();
     }
 
@@ -60,7 +63,6 @@ class ProductStore{
       }
 
     setDate(sd, ed){
-
         this.startDate = sd.getFullYear()+"-"+(sd.getMonth()+1)+"-"+sd.getDate()
         // this.startDate = (sd.getFullYear()).toString()+(sd.getMonth()+1).toString()+sd.getDate().toString();
         this.endDate= ed.getFullYear()+"-"+(ed.getMonth()+1)+"-"+ed.getDate();

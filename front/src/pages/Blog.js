@@ -36,8 +36,8 @@ export default function Reservation() {
   const sortRoomOptions = SelectOptions.sortRoomOptions;
 
   useEffect(() => {
-    rs.selectRoomList('99', '99');
-    fs.selectFlightList('99', '99');
+    rs.selectRoomList('99', '99','9');
+    fs.selectFlightList('99', '99','9');
   },[]);
 
   const oisetCode = (e, {value}) => {

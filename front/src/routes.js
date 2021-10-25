@@ -17,7 +17,7 @@ import Calendar from './pages/Cal';
 export default function Router() {
   return useRoutes([
     {
-      path: '/dashboard',
+      path: '/dashboard/',
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" replace /> },
