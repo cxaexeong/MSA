@@ -122,6 +122,11 @@ export default function AccountPopover(props) {
           <Button fullWidth color="inherit" variant="outlined" onClick={()=>{navigate('/register/', { replace: true }); }}>
             Register
           </Button>
+          <Button fullWidth color="inherit" variant="outlined" >
+          <a  target="_blank" href="http://localhost:8000/user/password_reset/">
+            Forgot password?
+            </a>
+          </Button>
         </Box>
             }
         {/* {ls.authenticated === true

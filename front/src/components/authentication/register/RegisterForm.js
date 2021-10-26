@@ -30,11 +30,13 @@ export default function RegisterForm() {
     let password = values.password
     let first_name = values.firstName
     let last_name = values.lastName
+    let email = values.email
     axios.post('http://localhost:8000/user/',{
             username,
             password,
             first_name,
             last_name,
+            email,
         }).then(function (res){
             // console.log(res)
         }).catch(function (err){

@@ -181,3 +181,11 @@ CORS_ORIGIN_WHITELIST = [
        'http://127.0.0.1:8000',
        'http://127.0.0.1:3000',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = ""
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD ='' # 2단계 보안 인증 비밀번호 = (앱 비밀번호)
+EMAIL_PORT = 587 # 권장 naver smtp포트
+EMAIL_USE_TLS = True #tls 보안 설정
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -60,7 +60,7 @@ export default function LoginForm(props) {
   const handleSubmit = (event) => {
     axios.post('http://localhost:8000/login/',{
         username: values.email,
-        password: values.password,
+        password: values.password
     }).then(function (res){
       localStorage.setItem('token', res.data.token);
       console.log(res)
@@ -72,9 +72,10 @@ export default function LoginForm(props) {
        ls.setToken(res.data.token);
        ls.setUser(res.data.user.id, res.data.user.username, res.data.user.first_name,res.data.user.last_name);
        ls.userHasAuthenticated(true);
-       navigate('/dashboard/app', { replace: true }); 
+       navigate('/login', { replace: true }); 
        }).catch(function (err){
         console.log(err)
+        alert("아이디와 비밀번호를 확인하세요");
     })
     event.preventDefault();
 }
@@ -124,10 +125,10 @@ export default function LoginForm(props) {
             control={<Checkbox {...getFieldProps('remember')} checked={values.remember} />}
             label="Remember me"
           />
-
-          <Link component={RouterLink} variant="subtitle2" to="#">
+          <a  target="_blank" href="http://localhost:8000/user/password_reset/">
             Forgot password?
-          </Link>
+            </a>
+ 
         </Stack>
 
         <LoadingButton
