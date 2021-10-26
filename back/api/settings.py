@@ -26,7 +26,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-!5qmq=9e+wdf%xd&+vlhq+#p_x09!-^b@7&t1b^z&s0vvknwi5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -102,10 +102,10 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
+        "NAME": "vpdb",
+        "USER": "vpuser",
+        "PASSWORD": "1234",
+        "HOST": "3.15.69.19",
         "PORT": "3306",
     }
 }
@@ -183,9 +183,9 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = ""
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD ='' # 2단계 보안 인증 비밀번호 = (앱 비밀번호)
+EMAIL_HOST = "smtp.naver.com"
+EMAIL_HOST_USER = 'multicam_msa@naver.com'
+EMAIL_HOST_PASSWORD ='msacloud10!' # 2단계 보안 인증 비밀번호 = (앱 비밀번호)
 EMAIL_PORT = 587 # 권장 naver smtp포트
 EMAIL_USE_TLS = True #tls 보안 설정
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
